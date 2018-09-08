@@ -84,6 +84,16 @@ enum News:Int {
         }
     }
     
+    var imageName:String
+    {
+        get
+        {
+            let name = "news\(self.id)"
+            return name
+        }
+    }
+    
+    
     static func getNews() ->[News]
     {
         return [festival, newClassTime, newTeacher]
@@ -93,7 +103,7 @@ enum News:Int {
     {
         var newsDictionary:[String:News] = [:]
         for news in getNews() {
-            newsDictionary.updateValue(news, forKey: news.id)
+            newsDictionary.updateValue(news, forKey: String(news.id))
         }
         
         return newsDictionary

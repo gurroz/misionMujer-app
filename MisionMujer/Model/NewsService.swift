@@ -20,4 +20,8 @@ class NewsService {
         return newsDictonary;
     }
     
+    func getNewsList() -> [News] {
+        return Array(newsDictonary.values);
+    }
+    
 }
