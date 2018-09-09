@@ -16,7 +16,12 @@ class CategoryViewCell : UICollectionViewCell {
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var latestImageView: UIImageView!
+    @IBOutlet weak var latestTitleLabel: UILabel!
+    @IBOutlet weak var latestDescriptionLabel: UILabel!
+    @IBOutlet weak var latestDurationLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var latestView: UIView! {
         didSet {
             latestView.layer.cornerRadius = 3.0
@@ -45,6 +50,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        latestImageView.image = UIImage(named: teachingLast.imageName)
+        latestTitleLabel.text = teachingLast.title
+        latestDescriptionLabel.text = teachingLast.description
+        latestDurationLabel.text = String(teachingLast.duration)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

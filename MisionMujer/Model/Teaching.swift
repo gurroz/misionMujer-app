@@ -40,13 +40,13 @@ enum Teaching:Int {
         {
             switch self
             {
-            case .startDay : return "Summer startDay"
-            case .goodSleep : return "New Time available"
-            case .firstChakra : return "Welcome new Teacher"
-            case .secondChakra: return "Welcome new Teacher"
-            case .thirdChakra: return "Welcome new Teacher"
-            case .thanks: return "Welcome new Teacher"
-            case .calm: return "Welcome new Teacher"
+            case .startDay : return "Start your day"
+            case .goodSleep : return "Get a good sleep"
+            case .firstChakra : return "Let's work in the first chakra"
+            case .secondChakra: return "Second chakra"
+            case .thirdChakra: return "Third chakra"
+            case .thanks: return "Stop and be thankfull"
+            case .calm: return "Calm yourself"
             }
         }
     }
@@ -57,13 +57,13 @@ enum Teaching:Int {
         {
             switch self
             {
-            case .startDay : return "The summer is here, and with this a new startDay. Renoun teachers and artist!"
-            case .goodSleep : return "On every Thursday a new class will be open"
-            case .firstChakra : return "To all newcomers and old staff"
-            case .secondChakra: return "To all newcomers and old staff"
-            case .thirdChakra: return "To all newcomers and old staff"
-            case .thanks: return "To all newcomers and old staff"
-            case .calm: return "To all newcomers and old staff"
+            case .startDay : return "The first few minutes of your morning are the most important of your day."
+            case .goodSleep : return "Healthy sleep habits can make a big difference in your quality of life"
+            case .firstChakra : return "Activate the Root Chakra"
+            case .secondChakra: return "What Is The Sacral Chakra?"
+            case .thirdChakra: return "Solar Plexus Chakra"
+            case .thanks: return "Gratitude and Thankfulness"
+            case .calm: return "Less anxiety and more blissfulness"
             }
         }
     }
@@ -74,19 +74,23 @@ enum Teaching:Int {
         {
             switch self
             {
-            case .startDay : return "Soak up the summer months at some of Melbourne's most exciting and diverse music and arts startDays. You don't have to travel hours into the countryside to get the full startDay experience; Melbourne's thriving live music scene means that the city is full of events packed with local bands and international talent. We've even got a startDay run entirely on solar power – we told you Melbourne's startDay offerings were diverse! Our top choices for summer combine stellar live music line-ups, art installations, light shows and boutique options for alfresco dining, so don your wristband – the startDay season is upon us. For more live music tips in Melbourne, check out our guide to the best places to see gigs every night of the week, and read about all the best upcoming gigs in Melbourne."
+            case .startDay : return "The first few minutes of your morning are the most important of your day and can set the tone for positivity and productivity. Ideally, you have an app or clock that taps into your natural circadian rhythm and wakes you during your best time within a certain window. Getting jarred out of a deep REM slumber to the sound of a blaring alarm clock sets you up for a negative day brimming with fatigue and crankiness.But getting the right alarm clock is only part of the battle."
                 
-            case .goodSleep : return "Call now to book an initial one to one physio session. During this, we will assess your current issues and form goals on what you want to achieve. We will teach you how to activate your deep core using ultrasound imaging and will initiate you with the basic exercises you will be performing in the class."
+            case .goodSleep : return "Stick to a sleep schedule of the same bedtime and wake up time, even on the weekends. This helps to regulate your body's clock and could help you fall asleep and stay asleep for the night. Practice a relaxing bedtime ritual. A relaxing, routine activity right before bedtime conducted away from bright lights helps separate your sleep time from activities that can cause excitement, stress or anxiety which can make it more difficult to fall asleep, get sound and deep sleep or remain asleep. Sleep on a comfortable mattress and pillows. Make sure your mattress is comfortable and supportive. The one you have been using for years may have exceeded its life expectancy – about 9 or 10 years for most good quality mattresses. Have comfortable pillows and make the room attractive and inviting for sleep but also free of allergens that might affect you and objects that might cause you to slip or fall if you have to get up."
                 
-            case .firstChakra : return "We’d like to warmly welcome all the newly-hired teachers to our wonderful learning institution for a new school year. We are so excited to have you all join our faculty. Our community of teachers continues to grow, but our mission statement always remains the same: we are here to serve, teach and help our students. I have also been instructed to read to you a recently-added, supplementary mission statement for the teachers. We hope everyone had a great summer because it’s time to get to work!"
+            case .firstChakra : return "The first chakra is associated with the following functions or behavioral characteristics: Security, safety. Survival, Basic needs (food, sleep, shelter, self-preservation, etc.). Physicality, physical identity and aspects of self. Grounding. Support and foundation for living our lives"
+                
             case .secondChakra:
-                return "We’d like to warmly welcome all the newly-hired teachers to our wonderful learning institution for a new school year. We are so excited to have you all join our faculty. Our community of teachers continues to grow, but our mission statement always remains the same: we are here to serve, teach and help our students. I have also been instructed to read to you a recently-added, supplementary mission statement for the teachers. We hope everyone had a great summer because it’s time to get to work!"
+                return "The sacral chakra is associated with the realm of emotions. It’s the center of our feelings and sensations. It’s particularly active in our sexuality and the expression of our sensual and sexual desires."
+                
             case .thirdChakra:
-                return "We’d like to warmly welcome all the newly-hired teachers to our wonderful learning institution for a new school year. We are so excited to have you all join our faculty. Our community of teachers continues to grow, but our mission statement always remains the same: we are here to serve, teach and help our students. I have also been instructed to read to you a recently-added, supplementary mission statement for the teachers. We hope everyone had a great summer because it’s time to get to work!"
+                return "The Third Chakra or the Solar plexus chakra is known as the Manipura Chakra in Sanskrit. ‘Mani’ stands for pearl or jewel and ‘pura’ stands for city. Thus, the Manipura Chakra is responsible for ‘pearls of wisdom’, well being, clarity and common sense in every individual. Experts call the Third Chakra the ‘self power chakra’- one’s self-confidence, self-discipline and the ability to achieve goals all come from it."
+                
             case .thanks:
-                return "We’d like to warmly welcome all the newly-hired teachers to our wonderful learning institution for a new school year. We are so excited to have you all join our faculty. Our community of teachers continues to grow, but our mission statement always remains the same: we are here to serve, teach and help our students. I have also been instructed to read to you a recently-added, supplementary mission statement for the teachers. We hope everyone had a great summer because it’s time to get to work!"
+                return "The way to live an enriching and fulfilling life is to live with gratefulness. The key is to keep gratitude at the forefront of your life. When you focus your mind on how privileged you are, it makes it easy for you to want to bless other people and express your deep sense of appreciation toward other things."
+                
             case .calm:
-                return "We’d like to warmly welcome all the newly-hired teachers to our wonderful learning institution for a new school year. We are so excited to have you all join our faculty. Our community of teachers continues to grow, but our mission statement always remains the same: we are here to serve, teach and help our students. I have also been instructed to read to you a recently-added, supplementary mission statement for the teachers. We hope everyone had a great summer because it’s time to get to work!"
+                return "When you’re anxious or angry, it can feel like every muscle in your body is tense (and they probably are). Practicing progressive muscle relaxation can help you calm down and center yourself. To do this, lie down on the floor with your arms out by your side. Make sure your feet aren’t crossed and your hands aren’t in fists. Start at your toes and tell yourself to release them. Slowly move up your body, telling yourself to release each part of your body until you get to your head."
             }
         }
     }
@@ -97,13 +101,13 @@ enum Teaching:Int {
         {
             switch self
             {
-            case .startDay : return "01/07/2018"
-            case .goodSleep : return "01/08/2018"
-            case .firstChakra : return "01/09/2018"
-            case .secondChakra: return "01/09/2018"
-            case .thirdChakra: return "01/09/2018"
-            case .thanks: return "01/09/2018"
-            case .calm: return "01/09/2018"
+            case .startDay : return "20/07/2018"
+            case .goodSleep : return "15/08/2018"
+            case .firstChakra : return "01/07/2018"
+            case .secondChakra: return "08/09/2018"
+            case .thirdChakra: return "12/08/2018"
+            case .thanks: return "24/08/2018"
+            case .calm: return "29/07/2018"
             }
         }
     }
@@ -163,8 +167,7 @@ enum Teaching:Int {
     {
         get
         {
-//            let name = "teaching\(self.id)"
-            let name = "dummy"
+            let name = "teaching\(self.id)"
             return name
         }
     }

@@ -63,7 +63,7 @@ class NewsViewController: UITableViewController {
         cell.dateLabel!.text = news.date
         cell.descriptionLabel!.text = news.description
         cell.titleLabel!.text = news.title
-//        cell.imageNewsView!.image =  UIImage(named: news.imageName)
+        cell.imageNewsView!.image =  UIImage(named: news.imageName)
         
         return cell
     }
