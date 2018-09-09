@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A38E6E42144E21D005DC846 /* TeachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E32144E21D005DC846 /* TeachingService.swift */; };
+		9A38E6E6214529D1005DC846 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E5214529D1005DC846 /* HomeViewController.swift */; };
+		9A38E6E821453ED5005DC846 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E721453ED5005DC846 /* Category.swift */; };
+		9A38E6EA21453FF4005DC846 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E921453FF4005DC846 /* CategoryService.swift */; };
+		9A71A1402144D545000C96A0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A13F2144D545000C96A0 /* SearchViewController.swift */; };
+		9A71A1422144D706000C96A0 /* TeachingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */; };
+		9A71A1442144D86F000C96A0 /* Teaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A1432144D86F000C96A0 /* Teaching.swift */; };
 		9AD2DA22213B9AA0007B0D62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA21213B9AA0007B0D62 /* AppDelegate.swift */; };
-		9AD2DA24213B9AA0007B0D62 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA23213B9AA0007B0D62 /* FirstViewController.swift */; };
-		9AD2DA26213B9AA0007B0D62 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA25213B9AA0007B0D62 /* SecondViewController.swift */; };
 		9AD2DA29213B9AA0007B0D62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD2DA27213B9AA0007B0D62 /* Main.storyboard */; };
 		9AD2DA2B213B9AA1007B0D62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD2DA2A213B9AA1007B0D62 /* Assets.xcassets */; };
 		9AD2DA2E213B9AA1007B0D62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD2DA2C213B9AA1007B0D62 /* LaunchScreen.storyboard */; };
@@ -38,10 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A38E6E32144E21D005DC846 /* TeachingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachingService.swift; sourceTree = "<group>"; };
+		9A38E6E5214529D1005DC846 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9A38E6E721453ED5005DC846 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		9A38E6E921453FF4005DC846 /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		9A71A13F2144D545000C96A0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachingTableViewCell.swift; sourceTree = "<group>"; };
+		9A71A1432144D86F000C96A0 /* Teaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teaching.swift; sourceTree = "<group>"; };
 		9AD2DA1E213B9AA0007B0D62 /* MisionMujer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MisionMujer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD2DA21213B9AA0007B0D62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9AD2DA23213B9AA0007B0D62 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		9AD2DA25213B9AA0007B0D62 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9AD2DA28213B9AA0007B0D62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AD2DA2A213B9AA1007B0D62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9AD2DA2D213B9AA1007B0D62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -137,9 +147,10 @@
 		9AD2DA51213BCAC9007B0D62 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9AD2DA23213B9AA0007B0D62 /* FirstViewController.swift */,
-				9AD2DA25213B9AA0007B0D62 /* SecondViewController.swift */,
 				9AD2DA53213C1478007B0D62 /* NewsViewController.swift */,
+				9A71A13F2144D545000C96A0 /* SearchViewController.swift */,
+				9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */,
+				9A38E6E5214529D1005DC846 /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,7 +159,11 @@
 			isa = PBXGroup;
 			children = (
 				9AD2DA55213C18C5007B0D62 /* News.swift */,
+				9A38E6E721453ED5005DC846 /* Category.swift */,
+				9A71A1432144D86F000C96A0 /* Teaching.swift */,
 				9AD2DA57213C1EC9007B0D62 /* NewsService.swift */,
+				9A38E6E921453FF4005DC846 /* CategoryService.swift */,
+				9A38E6E32144E21D005DC846 /* TeachingService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,9 +300,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AD2DA58213C1EC9007B0D62 /* NewsService.swift in Sources */,
-				9AD2DA26213B9AA0007B0D62 /* SecondViewController.swift in Sources */,
+				9A38E6E821453ED5005DC846 /* Category.swift in Sources */,
+				9A71A1442144D86F000C96A0 /* Teaching.swift in Sources */,
+				9A38E6EA21453FF4005DC846 /* CategoryService.swift in Sources */,
+				9A38E6E42144E21D005DC846 /* TeachingService.swift in Sources */,
+				9A71A1402144D545000C96A0 /* SearchViewController.swift in Sources */,
 				9AD2DA22213B9AA0007B0D62 /* AppDelegate.swift in Sources */,
-				9AD2DA24213B9AA0007B0D62 /* FirstViewController.swift in Sources */,
+				9A38E6E6214529D1005DC846 /* HomeViewController.swift in Sources */,
+				9A71A1422144D706000C96A0 /* TeachingTableViewCell.swift in Sources */,
 				9AD2DA56213C18C5007B0D62 /* News.swift in Sources */,
 				9AD2DA54213C1478007B0D62 /* NewsViewController.swift in Sources */,
 			);

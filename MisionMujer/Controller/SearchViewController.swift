@@ -1,5 +1,5 @@
 //
-//  NewsViewController.swift
+//  SearchViewController.swift
 //  MisionMujer
 //
 //  Created by Gonzalo Urroz on 2/9/18.
@@ -8,30 +8,19 @@
 
 import UIKit
 
-class NewsViewCell: UITableViewCell {
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var imageNewsView: UIImageView!
-    @IBOutlet weak var backgroundCardView: UIView! {
-        didSet {
-            backgroundCardView.layer.cornerRadius = 3.0
-            backgroundCardView.layer.masksToBounds = false
-            backgroundCardView.layer.shadowColor = UIColor.black.cgColor
-            backgroundCardView.layer.shadowOffset = CGSize(width: 5, height: 5)
-            backgroundCardView.layer.shadowRadius = 5
-            backgroundCardView.layer.shadowOpacity = 0.5
-        }
-    }
-}
+class SearchViewController: UITableViewController, UISearchResultsUpdating  {
 
-class NewsViewController: UITableViewController {
-    
-    var  newsList:[News] = NewsService.sharedInstance.getNewsList()
-    
+    var teachingList:[Teaching] = TeachingService.sharedInstance.getTeachingList()
+    var filteredTeaching = [Teaching]()
+
+    let searchController = UISearchController(searchResultsController:nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -39,7 +28,14 @@ class NewsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    // MARK: - Table view data source
+    func filterContentForSearchText(searchText: String, scope:String = "All")
+    {
+        filteredTeaching = teachingList.filter
+        {
+            teaching in return teaching.title.lowercased().contains(searchText.lowercased())
+        }
+        tableView.reloadData()
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -47,23 +43,42 @@ class NewsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsList.count
+        if searchController.isActive && searchController.searchBar.text! != ""
+        {
+            return filteredTeaching.count
+        }
+        
+        return teachingList.count
     }
     
-    func changeDataSource(indexPath: NSIndexPath) -> News
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+    
+    func changeDataSource(indexPath: NSIndexPath) -> Teaching
     {
-        return newsList[indexPath.row]
+        var teaching:Teaching
+        if searchController.isActive && searchController.searchBar.text! != ""
+        {
+            teaching = filteredTeaching[indexPath.row]
+        }
+        else{
+            teaching = teachingList[indexPath.row]
+        }
+        
+        return teaching
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchTeachingCell", for: indexPath) as! TeachingTableViewCell
         
-        let news:News = changeDataSource(indexPath: indexPath as NSIndexPath)
+        let teaching:Teaching = changeDataSource(indexPath: indexPath as NSIndexPath)
         
-        cell.dateLabel!.text = news.date
-        cell.descriptionLabel!.text = news.description
-        cell.titleLabel!.text = news.title
-//        cell.imageNewsView!.image =  UIImage(named: news.imageName)
+        cell.titleLabel!.text = teaching.title
+        cell.descriptionLabel!.text = teaching.description
+        cell.categoryLabel!.text = String(teaching.duration)
+        cell.durationLabel!.text = String(teaching.category)
+        cell.teachingImageView!.image =  UIImage(named: teaching.imageName)
         
         return cell
     }
