@@ -8,13 +8,7 @@
 
 import UIKit
 
-class CategoryViewCell : UICollectionViewCell {
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var categoryImageView: UIImageView!
-}
-
-class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class HomeViewController: UIViewController {
     
     @IBOutlet weak var latestImageView: UIImageView!
     @IBOutlet weak var latestTitleLabel: UILabel!
@@ -44,6 +38,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    @IBAction func lastButton(_ sender: UIButton){}
+    
     var teachingLast:Teaching = TeachingService.sharedInstance.getLatestTeaching()
     var categoryList:[Category] = CategoryService.sharedInstance.getCategoryList()
     
@@ -55,6 +51,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         latestDescriptionLabel.text = teachingLast.description
         latestDurationLabel.text = String(teachingLast.duration)
     }
+}
+
+extension HomeViewController:  UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryList.count
@@ -72,13 +71,24 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfSections section: Int) -> Int {
         return 1
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = self.collectionView.indexPathsForSelectedItems?.first
-        let category:Category = categoryList[indexPath!.row]
-
-        let categoryVC = segue.destination as! CategoryTeachingViewController
-
-        categoryVC.categoryTitle = category.title
+        if segue.identifier == "segueToCategoryDetail" {
+            let indexPath = self.collectionView.indexPathsForSelectedItems?.first
+            let category:Category = categoryList[indexPath!.row]
+            
+            let categoryVC = segue.destination as! CategoryTeachingViewController
+            categoryVC.categoryTitle = category.title
+        } else if segue.identifier == "segueToTeachingDetail" {
+            let detailVC = segue.destination as! TeachingDetailViewController
+            detailVC.teaching = teachingLast
+        }
     }
 }
+
+class CategoryViewCell : UICollectionViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var categoryImageView: UIImageView!
+}
+

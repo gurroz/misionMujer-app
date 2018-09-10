@@ -11,6 +11,9 @@ import UIKit
 class LovedItViewController: UITableViewController {
     var persistedCategories:[Category] = CategoryService.sharedInstance.getPersistedCategoryList()
     var teachingCollection:[String: [Teaching]] = TeachingService.sharedInstance.getPersistedTeachingList()
+    
+    var storedOffsets = [Int: CGFloat]()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,12 @@ class LovedItViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? LovedItTableViewCell else { return }
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        tableViewCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? LovedItTableViewCell else { return }
+        storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
     }
 }
 

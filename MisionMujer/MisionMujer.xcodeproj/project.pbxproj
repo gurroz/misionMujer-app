@@ -27,6 +27,7 @@
 		9AF48E132145EE1000C2DCEB /* LovedItTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */; };
 		9AF48E152146311E00C2DCEB /* CategoryTeachingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */; };
 		9AF48E1721463E7500C2DCEB /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E1621463E7500C2DCEB /* NewsDetailViewController.swift */; };
+		9AF48E192146BA4200C2DCEB /* TeachingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E182146BA4200C2DCEB /* TeachingDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedItTableViewCell.swift; sourceTree = "<group>"; };
 		9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTeachingViewController.swift; sourceTree = "<group>"; };
 		9AF48E1621463E7500C2DCEB /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		9AF48E182146BA4200C2DCEB /* TeachingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachingDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,14 +157,15 @@
 		9AD2DA51213BCAC9007B0D62 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */,
 				9A38E6E5214529D1005DC846 /* HomeViewController.swift */,
 				9AD2DA53213C1478007B0D62 /* NewsViewController.swift */,
 				9AF48E1621463E7500C2DCEB /* NewsDetailViewController.swift */,
 				9AF48E1021457E2D00C2DCEB /* LovedItViewController.swift */,
 				9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */,
 				9A71A13F2144D545000C96A0 /* SearchViewController.swift */,
-				9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */,
 				9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */,
+				9AF48E182146BA4200C2DCEB /* TeachingDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				9A38E6E821453ED5005DC846 /* Category.swift in Sources */,
 				9A71A1442144D86F000C96A0 /* Teaching.swift in Sources */,
 				9AF48E152146311E00C2DCEB /* CategoryTeachingViewController.swift in Sources */,
+				9AF48E192146BA4200C2DCEB /* TeachingDetailViewController.swift in Sources */,
 				9A38E6EA21453FF4005DC846 /* CategoryService.swift in Sources */,
 				9AF48E1121457E2D00C2DCEB /* LovedItViewController.swift in Sources */,
 				9A38E6E42144E21D005DC846 /* TeachingService.swift in Sources */,

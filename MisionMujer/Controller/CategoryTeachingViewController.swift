@@ -41,4 +41,11 @@ class CategoryTeachingViewController: UITableViewController  {
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = self.tableView.indexPathForSelectedRow!
+        let teaching:Teaching = teachingList[indexPath.row]
+        
+        let detailVC = segue.destination as! TeachingDetailViewController
+        detailVC.teaching = teaching
+    }
 }
