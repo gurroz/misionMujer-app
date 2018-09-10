@@ -28,15 +28,26 @@ class TeachingService {
         return Array(teachingDictonary.values)[0];
     }
     
-    func getPersistedTeachingList(categoryName: String) -> [Teaching] {
-        let teachings =  Array(teachingDictonary.values)
-        return teachings;
+    func getPersistedTeachingList() -> [String: [Teaching]] {
+        return Teaching.getTeachingCategoryDictionary();
     }
     
     func getTeachingList(categoryName: String) -> [Teaching] {
-        let teachings =  Array(teachingDictonary.values).filter { (teaching) -> Bool in
-            return teaching.category.lowercased().contains(categoryName.lowercased())
+        let categoryCleansed = cleanCatName(categoryName: categoryName)
+        let teachings =  getTeachingList().filter { (teaching) -> Bool in
+            var response = false
+            for category in teaching.category {
+                let currentCatCleansed = cleanCatName(categoryName: category)
+                if currentCatCleansed.contains(categoryCleansed) {
+                    response = true
+                }
+            }
+            return response
         }
         return teachings;
+    }
+    
+    func cleanCatName(categoryName: String) -> String{
+        return categoryName.replacingOccurrences(of: " ", with: "").lowercased()
     }
 }

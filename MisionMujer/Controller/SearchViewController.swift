@@ -21,11 +21,6 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func filterContentForSearchText(searchText: String, scope:String = "All")
@@ -77,7 +72,7 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         cell.titleLabel!.text = teaching.title
         cell.descriptionLabel!.text = teaching.description
         cell.categoryLabel!.text = String(teaching.duration)
-        cell.durationLabel!.text = String(teaching.category)
+        cell.durationLabel!.text = teaching.category.first
         cell.teachingImageView!.image =  UIImage(named: teaching.imageName)
         
         return cell
