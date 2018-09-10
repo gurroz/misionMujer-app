@@ -27,4 +27,16 @@ class TeachingService {
     func getLatestTeaching() -> Teaching {
         return Array(teachingDictonary.values)[0];
     }
+    
+    func getPersistedTeachingList(categoryName: String) -> [Teaching] {
+        let teachings =  Array(teachingDictonary.values)
+        return teachings;
+    }
+    
+    func getTeachingList(categoryName: String) -> [Teaching] {
+        let teachings =  Array(teachingDictonary.values).filter { (teaching) -> Bool in
+            return teaching.category.lowercased().contains(categoryName.lowercased())
+        }
+        return teachings;
+    }
 }

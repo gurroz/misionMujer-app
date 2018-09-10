@@ -8,7 +8,7 @@
 
 import Foundation
 enum Category:Int {
-    case energize=1, goodSleep, chakras, mindfulness
+    case energize=1, goodSleep, chakras, mindfulness, mostPlayed, continueWatching
     
     init() {
         self = .energize
@@ -20,7 +20,9 @@ enum Category:Int {
         case 1 : self = .energize
         case 2: self = .goodSleep
         case 3: self = .chakras
-        case 4: self = .chakras
+        case 4: self = .mindfulness
+        case 5: self = .mostPlayed
+        case 6: self = .continueWatching
         default: return nil
         }
     }
@@ -41,6 +43,8 @@ enum Category:Int {
             case .goodSleep : return "Good Sleep"
             case .chakras : return "Chakras"
             case .mindfulness: return "Mindfulness"
+            case .mostPlayed: return "Most Played"
+            case .continueWatching:  return "Continue Watching"
             }
         }
     }
@@ -58,6 +62,11 @@ enum Category:Int {
     static func getCategory() ->[Category]
     {
         return [energize, goodSleep, chakras, mindfulness]
+    }
+    
+    static func getLovedItCategories() ->[Category]
+    {
+        return [energize, goodSleep, chakras, mindfulness, mostPlayed, continueWatching]
     }
     
     static func getCategoryDictionary() ->[String:Category]

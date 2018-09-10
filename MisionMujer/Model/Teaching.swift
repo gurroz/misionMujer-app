@@ -119,11 +119,11 @@ enum Teaching:Int {
             switch self
             {
             case .startDay : return "Energize"
-            case .goodSleep : return "GoodSleep"
+            case .goodSleep : return "Good Sleep"
             case .firstChakra : return "Chakras"
             case .secondChakra: return "Chakras"
             case .thirdChakra: return "Chakras"
-            case .thanks: return "GoodSleep,Energize,Mindfulness"
+            case .thanks: return "Good Sleep,Energize,Mindfulness"
             case .calm: return "Energize,GoodSleep,Mindfulness"
             }
         }
@@ -183,6 +183,19 @@ enum Teaching:Int {
         var teachingDictionary:[String:Teaching] = [:]
         for teaching in getTeaching() {
             teachingDictionary.updateValue(teaching, forKey: String(teaching.id))
+        }
+        
+        return teachingDictionary
+    }
+    
+    static func getTeachingCategoryDictionary() ->[String:[Teaching]]
+    {
+        var teachingDictionary:[String:[Teaching]] = [:]
+        for teaching in getTeaching() {
+            var actualList = teachingDictionary[teaching.category] ?? [Teaching]()
+            actualList.append(teaching)
+            
+            teachingDictionary.updateValue(actualList, forKey: teaching.category)
         }
         
         return teachingDictionary

@@ -73,4 +73,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return 1
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = self.collectionView.indexPathsForSelectedItems?.first
+        let category:Category = categoryList[indexPath!.row]
+
+        let categoryVC = segue.destination as! CategoryTeachingViewController
+
+        categoryVC.categoryTitle = category.title
+    }
 }
