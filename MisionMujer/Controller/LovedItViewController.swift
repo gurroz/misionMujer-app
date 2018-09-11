@@ -10,7 +10,7 @@ import UIKit
 
 class LovedItViewController: UITableViewController {
     var persistedCategories:[Category] = CategoryService.sharedInstance.getPersistedCategoryList()
-    var teachingCollection:[String: [Teaching]] = TeachingService.sharedInstance.getPersistedTeachingList()
+    var teachingCollection:[String: [Teaching]] = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
     
     var storedOffsets = [Int: CGFloat]()
 

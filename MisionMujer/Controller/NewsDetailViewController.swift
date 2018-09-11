@@ -14,10 +14,6 @@ class NewsDetailViewController: UIViewController  {
         didSet {
             backgroundCardView.layer.cornerRadius = 3.0
             backgroundCardView.layer.masksToBounds = false
-            backgroundCardView.layer.shadowColor = UIColor.black.cgColor
-            backgroundCardView.layer.shadowOffset = CGSize(width: 5, height: 5)
-            backgroundCardView.layer.shadowRadius = 5
-            backgroundCardView.layer.shadowOpacity = 0.5
         }
     }
     

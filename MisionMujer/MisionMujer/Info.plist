@@ -51,5 +51,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSExceptionDomains</key>
+    <dict>
+        <key>www.videvo.net</key>
+        <dict>
+            <key>NSExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+    </dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

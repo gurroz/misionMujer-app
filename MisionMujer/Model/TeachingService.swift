@@ -9,11 +9,14 @@
 import Foundation
 class TeachingService {
     let teachingDictonary:[String: Teaching]
+    var teachingPersistedDictonary:[Int: Teaching]
+
     
     static let sharedInstance = TeachingService()
     
     private init() {
         teachingDictonary = Teaching.getTeachingDictionary()
+        teachingPersistedDictonary = [Int: Teaching]()
     }
 
     func getTeachingDictionary() -> [String: Teaching] {
@@ -28,8 +31,28 @@ class TeachingService {
         return Array(teachingDictonary.values)[0];
     }
     
-    func getPersistedTeachingList() -> [String: [Teaching]] {
-        return Teaching.getTeachingCategoryDictionary();
+    func getPersistedTeachingList() -> [Teaching] {
+        return Array(teachingPersistedDictonary.values)
+    }
+    
+    func getPersistedDictoniaryTeachingList() -> [String: [Teaching]] {
+        return getTeachingCategoryDictionary();
+    }
+    
+    func isTeachingPersisted(teaching: Teaching) -> Bool {
+        if teachingPersistedDictonary[teaching.id] != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    func persistTeaching(teaching: Teaching) {
+        teachingPersistedDictonary.updateValue(teaching, forKey: teaching.id)
+    }
+    
+    func deletePersistedTeaching(teaching: Teaching) {
+        teachingPersistedDictonary.removeValue(forKey: teaching.id)
     }
     
     func getTeachingList(categoryName: String) -> [Teaching] {
@@ -50,4 +73,22 @@ class TeachingService {
     func cleanCatName(categoryName: String) -> String{
         return categoryName.replacingOccurrences(of: " ", with: "").lowercased()
     }
+    
+    func getTeachingCategoryDictionary() ->[String:[Teaching]]
+    {
+        var teachingDictionary:[String:[Teaching]] = [:]
+        for teaching in getPersistedTeachingList() {
+            let teachingCategories = teaching.category
+            for category in teachingCategories {
+                let categoryCleaned = category.replacingOccurrences(of: " ", with: "").lowercased()
+                var actualList = teachingDictionary[categoryCleaned] ?? [Teaching]()
+                actualList.append(teaching)
+                
+                teachingDictionary.updateValue(actualList, forKey: categoryCleaned)
+            }
+        }
+        
+        return teachingDictionary
+    }
+    
 }

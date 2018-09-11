@@ -20,10 +20,6 @@ class HomeViewController: UIViewController {
         didSet {
             latestView.layer.cornerRadius = 3.0
             latestView.layer.masksToBounds = false
-            latestView.layer.shadowColor = UIColor.black.cgColor
-            latestView.layer.shadowOffset = CGSize(width: 5, height: 5)
-            latestView.layer.shadowRadius = 5
-            latestView.layer.shadowOpacity = 0.5
         }
     }
     
@@ -31,10 +27,6 @@ class HomeViewController: UIViewController {
         didSet {
             exploreView.layer.cornerRadius = 3.0
             exploreView.layer.masksToBounds = false
-            exploreView.layer.shadowColor = UIColor.black.cgColor
-            exploreView.layer.shadowOffset = CGSize(width: 5, height: 5)
-            exploreView.layer.shadowRadius = 5
-            exploreView.layer.shadowOpacity = 0.5
         }
     }
     
@@ -49,7 +41,7 @@ class HomeViewController: UIViewController {
         latestImageView.image = UIImage(named: teachingLast.imageName)
         latestTitleLabel.text = teachingLast.title
         latestDescriptionLabel.text = teachingLast.description
-        latestDurationLabel.text = String(teachingLast.duration)
+        latestDurationLabel.text = teachingLast.getDurationInMinutes()
     }
 }
 

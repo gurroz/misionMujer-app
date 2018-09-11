@@ -35,7 +35,7 @@ class CategoryTeachingViewController: UITableViewController  {
         cell.titleLabel!.text = teaching.title
         cell.descriptionLabel!.text = teaching.description
         cell.categoryLabel!.text = String(teaching.category[0])
-        cell.durationLabel!.text = String(teaching.duration)
+        cell.durationLabel!.text = teaching.getDurationInMinutes()
         cell.teachingImageView!.image =  UIImage(named: teaching.imageName)
         
         return cell

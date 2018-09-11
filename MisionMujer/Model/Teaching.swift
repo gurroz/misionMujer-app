@@ -172,6 +172,10 @@ enum Teaching:Int {
         }
     }
     
+    func getDurationInMinutes() -> String {
+        let minutes = self.duration / 60
+        return "\(minutes) min"
+    }
     
     static func getTeaching() ->[Teaching]
     {
@@ -188,20 +192,5 @@ enum Teaching:Int {
         return teachingDictionary
     }
     
-    static func getTeachingCategoryDictionary() ->[String:[Teaching]]
-    {
-        var teachingDictionary:[String:[Teaching]] = [:]
-        for teaching in getTeaching() {
-            let teachingCategories = teaching.category
-            for category in teachingCategories {
-                let categoryCleaned = category.replacingOccurrences(of: " ", with: "").lowercased()
-                var actualList = teachingDictionary[categoryCleaned] ?? [Teaching]()
-                actualList.append(teaching)
-                
-                teachingDictionary.updateValue(actualList, forKey: categoryCleaned)
-            }
-        }
-        
-        return teachingDictionary
-    }
+    
 }
