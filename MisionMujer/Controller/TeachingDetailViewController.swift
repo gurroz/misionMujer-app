@@ -14,11 +14,34 @@ class TeachingDetailViewController: UIViewController {
    
     @IBOutlet weak var teachingImageView: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var lovedItImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var statisticsLabel: UILabel!
+    @IBAction func loveItButtn(_ sender: UIButton) {
+        persistTeaching()
+    }
+    
+    @IBOutlet weak var loveItImageBtn: UIButton!
     @IBAction func playButton(_ sender: UIButton) {
+       playVideo()
+    }
+    
+    var teaching:Teaching = Teaching()
+    var isTeachingPersisted: Bool = false
+    
+    override func viewDidLoad() {
+        title = teaching.title
+        teachingImageView.image = UIImage(named: teaching.imageName)
+        timerLabel.text = teaching.getDurationInMinutes()
+        statisticsLabel.text = "0 times"
+        descriptionLabel.text = teaching.notes
+        dateLabel.text = teaching.date
+        
+        isTeachingPersisted = TeachingService.sharedInstance.isTeachingPersisted(teaching: teaching)
+        updateLoveItImageStatus()
+    }
+    
+    func playVideo() {
         guard let url = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4") else {
             return
         }
@@ -35,14 +58,21 @@ class TeachingDetailViewController: UIViewController {
         }
     }
     
-    var teaching:Teaching = Teaching()
+    func persistTeaching() {
+        if !isTeachingPersisted {
+            TeachingService.sharedInstance.persistTeaching(teaching: teaching)
+            isTeachingPersisted = true;
+            updateLoveItImageStatus()
+        }
+    }
     
-    override func viewDidLoad() {
-        title = teaching.title
-        teachingImageView.image = UIImage(named: teaching.imageName)
-        timerLabel.text = teaching.getDurationInMinutes()
-        statisticsLabel.text = "0 times"
-        descriptionLabel.text = teaching.notes
-        dateLabel.text = teaching.date
+    func updateLoveItImageStatus() {
+        if isTeachingPersisted {
+            loveItImageBtn.imageView?.image = loveItImageBtn.imageView?.image!.withRenderingMode(.alwaysTemplate)
+            loveItImageBtn.imageView?.tintColor = UIColor(red: 237/255.0, green: 78/255.0, blue: 78/255.0, alpha: 1)
+        } else {
+            loveItImageBtn.imageView?.image = loveItImageBtn.imageView?.image!.withRenderingMode(.alwaysTemplate)
+            loveItImageBtn.imageView?.tintColor = UIColor(red: 46/255.0, green: 196/255.0, blue: 182/255.0, alpha: 1)
+        }
     }
 }

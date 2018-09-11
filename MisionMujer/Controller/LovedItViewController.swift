@@ -12,6 +12,8 @@ class LovedItViewController: UITableViewController {
     var persistedCategories:[Category] = CategoryService.sharedInstance.getPersistedCategoryList()
     var teachingCollection:[String: [Teaching]] = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
     
+    @IBAction func deleteBtnAction(_ sender: UIButton) {
+    }
     var storedOffsets = [Int: CGFloat]()
 
 
