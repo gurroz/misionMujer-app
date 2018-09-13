@@ -29,6 +29,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor(red: 237/255.0, green: 78/255.0, blue: 78/255.0, alpha: 1)
         UITabBar.appearance().unselectedItemTintColor = UIColor(red: 46/255.0, green: 196/255.0, blue: 182/255.0, alpha: 1)
         
+        
+        /* Get references to all of our controllers so we can set the intial data */
+        let tabBarController = self.window!.rootViewController as! UITabBarController
+        
+        /* This is the controller on the third tab*/
+        let splitViewController = tabBarController.viewControllers![2] as! UISplitViewController
+        
+        /* The split view controller has two navigation controllers, the first one is for the Master View, the second one is for the Detail View */
+        let navControllerForMasterView = splitViewController.viewControllers.first as! UINavigationController
+        let navControllerFordetailViewController = splitViewController.viewControllers.last as! UINavigationController
+        
+        /* The table view controller is the first or top controller of the nav controller for the master view */
+        let masterViewController = navControllerForMasterView.topViewController as! NewsViewController
+        
+        /* The detail view controller is the first or top controller of the nav controller for detail view */
+        let detailViewController = navControllerFordetailViewController.topViewController as! NewsDetailViewController
+        
+        /* Grab a default news from the model */
+        let defaultNews = NewsService.sharedInstance.getDefaulNews()
+        
+        /* Set this as the default news to display in both the table view and detail view */
+        masterViewController.actualNews = defaultNews
+        detailViewController.news = defaultNews
+        
+        /* Set the delegate in the table view to point to the detail view */
+        masterViewController.delegate = detailViewController
+        
+        detailViewController.navigationItem .leftItemsSupplementBackButton = true
+        detailViewController.navigationItem .leftBarButtonItem = splitViewController.displayModeButtonItem
+        
         return true
         
     }

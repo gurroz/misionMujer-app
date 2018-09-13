@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A260659214A9286006D7D04 /* NewsSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A260658214A9286006D7D04 /* NewsSplitViewController.swift */; };
 		9A38E6E42144E21D005DC846 /* TeachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E32144E21D005DC846 /* TeachingService.swift */; };
 		9A38E6E6214529D1005DC846 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E5214529D1005DC846 /* HomeViewController.swift */; };
 		9A38E6E821453ED5005DC846 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E721453ED5005DC846 /* Category.swift */; };
@@ -28,6 +29,7 @@
 		9AF48E152146311E00C2DCEB /* CategoryTeachingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */; };
 		9AF48E1721463E7500C2DCEB /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E1621463E7500C2DCEB /* NewsDetailViewController.swift */; };
 		9AF48E192146BA4200C2DCEB /* TeachingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E182146BA4200C2DCEB /* TeachingDetailViewController.swift */; };
+		9AFC2C322148D77300003C75 /* SplashScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC2C312148D77300003C75 /* SplashScreenController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A260658214A9286006D7D04 /* NewsSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSplitViewController.swift; sourceTree = "<group>"; };
 		9A38E6E32144E21D005DC846 /* TeachingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachingService.swift; sourceTree = "<group>"; };
 		9A38E6E5214529D1005DC846 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9A38E6E721453ED5005DC846 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTeachingViewController.swift; sourceTree = "<group>"; };
 		9AF48E1621463E7500C2DCEB /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		9AF48E182146BA4200C2DCEB /* TeachingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachingDetailViewController.swift; sourceTree = "<group>"; };
+		9AFC2C312148D77300003C75 /* SplashScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplashScreenController.swift; path = Controller/SplashScreenController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,10 +164,12 @@
 				9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */,
 				9A38E6E5214529D1005DC846 /* HomeViewController.swift */,
 				9AD2DA53213C1478007B0D62 /* NewsViewController.swift */,
+				9A260658214A9286006D7D04 /* NewsSplitViewController.swift */,
 				9AF48E1621463E7500C2DCEB /* NewsDetailViewController.swift */,
 				9AF48E1021457E2D00C2DCEB /* LovedItViewController.swift */,
 				9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */,
 				9A71A13F2144D545000C96A0 /* SearchViewController.swift */,
+				9AFC2C312148D77300003C75 /* SplashScreenController.swift */,
 				9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */,
 				9AF48E182146BA4200C2DCEB /* TeachingDetailViewController.swift */,
 			);
@@ -326,7 +332,9 @@
 				9A71A1402144D545000C96A0 /* SearchViewController.swift in Sources */,
 				9AF48E1721463E7500C2DCEB /* NewsDetailViewController.swift in Sources */,
 				9AD2DA22213B9AA0007B0D62 /* AppDelegate.swift in Sources */,
+				9A260659214A9286006D7D04 /* NewsSplitViewController.swift in Sources */,
 				9A38E6E6214529D1005DC846 /* HomeViewController.swift in Sources */,
+				9AFC2C322148D77300003C75 /* SplashScreenController.swift in Sources */,
 				9A71A1422144D706000C96A0 /* TeachingTableViewCell.swift in Sources */,
 				9AD2DA56213C18C5007B0D62 /* News.swift in Sources */,
 				9AD2DA54213C1478007B0D62 /* NewsViewController.swift in Sources */,

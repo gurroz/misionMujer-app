@@ -24,4 +24,8 @@ class NewsService {
         return Array(newsDictonary.values);
     }
     
+    func getDefaulNews() -> News {
+        return getNewsList()[0]
+    }
+    
 }

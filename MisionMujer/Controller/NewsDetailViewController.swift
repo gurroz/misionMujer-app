@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsDetailViewController: UIViewController  {
+class NewsDetailViewController: UIViewController {
 
     @IBOutlet weak var backgroundCardView: UIView!  {
         didSet {
@@ -22,15 +22,29 @@ class NewsDetailViewController: UIViewController  {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var news:News = News()
+    var news:News?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = news.title
-        textLabel!.text = news.content
-        titleLabel!.text = news.title
-        dateLabel!.text = "Published: \(news.date)"
-        newsImageView!.image =  UIImage(named: news.imageName)
+        setNewsOnView()
     }
+    
+    func setNewsOnView() {
+        title = news!.title
+        textLabel!.text = news!.content
+        titleLabel!.text = news!.title
+        dateLabel!.text = "Published: \(news!.date)"
+        newsImageView!.image =  UIImage(named: news!.imageName)
+    }
+}
+
+extension NewsDetailViewController: RefreshNews {
+    
+    func refreshItem(news: News) {
+        self.news = news
+        self.loadView()
+        setNewsOnView()
+    }
+    
     
 }
