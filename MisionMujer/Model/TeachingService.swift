@@ -80,7 +80,7 @@ class TeachingService {
         for teaching in getPersistedTeachingList() {
             let teachingCategories = teaching.category
             for category in teachingCategories {
-                let categoryCleaned = category.replacingOccurrences(of: " ", with: "").lowercased()
+                let categoryCleaned = cleanCatName(categoryName: category)
                 var actualList = teachingDictionary[categoryCleaned] ?? [Teaching]()
                 actualList.append(teaching)
                 

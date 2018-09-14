@@ -19,6 +19,7 @@ class LovedItViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        teachingCollection = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,28 +34,29 @@ class LovedItViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lovedItCell", for: indexPath) as! LovedItTableViewCell
         let categoryName = persistedCategories[indexPath.row].title
         cell.categoryLabel.text = categoryName
+        cell.teachingCollectionView.delegate = self
+        cell.teachingCollectionView.dataSource = self
+        cell.teachingCollectionView.tag = indexPath.row
+        cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? LovedItTableViewCell else { return }
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
-        tableViewCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
+        tableViewCell.teachingCollectionView.reloadData()
     }
-    
+
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? LovedItTableViewCell else { return }
         storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
     }
 }
 
-extension LovedItViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
+extension LovedItViewController: UICollectionViewDataSource  {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let category:Category = persistedCategories[collectionView.tag]
-        let categoryNameCleansed = category.title.replacingOccurrences(of: " ", with: "").lowercased()
-        let teachingList = (teachingCollection[categoryNameCleansed] != nil) ? teachingCollection[categoryNameCleansed]! : [Teaching]()
+        let teachingList = getTeachingFromDictionary(categoryTag: collectionView.tag)
         
         return teachingList.count
     }
@@ -65,10 +67,31 @@ extension LovedItViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "lovedItTeachingCell", for: indexPath) as! LovedItCategoryCollectionViewCell
-//        let teaching = teachingCollection[indexPath.row]
+        let teachingList = getTeachingFromDictionary(categoryTag: collectionView.tag)
+
+        let teaching = teachingList[indexPath.row]
         
-        cell.titleLabel.text = "hola"
-        cell.teachingImageView.image = UIImage(named: "dummy")
+        cell.titleLabel.text = teaching.title
+        cell.teachingImageView.image = UIImage(named: teaching.imageName)
         return cell
+    }
+    
+    func getTeachingFromDictionary(categoryTag: Int) -> [Teaching] {
+        let category:Category = persistedCategories[categoryTag]
+        let categoryNameCleansed = TeachingService.sharedInstance.cleanCatName(categoryName: category.title)
+        let teachingList = (teachingCollection[categoryNameCleansed] != nil) ? teachingCollection[categoryNameCleansed]! : [Teaching]()
+        
+        return teachingList
+    }
+}
+
+extension LovedItViewController: UICollectionViewDelegate  {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        _ = cell as! LovedItCategoryCollectionViewCell
+        NSLog("Ahora en el collectionView willDisplay \(indexPath.row)")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NSLog("Ahora en el collectionView didSelectItemAt \(indexPath.row)")
     }
 }
