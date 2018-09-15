@@ -8,18 +8,19 @@
 
 import UIKit
 
-class LovedItViewController: UITableViewController {
+class LovedItViewController: UITableViewController, TeachingPersistanceTrash {
     var persistedCategories:[Category] = CategoryService.sharedInstance.getPersistedCategoryList()
     var teachingCollection:[String: [Teaching]] = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
-    
-    @IBAction func deleteBtnAction(_ sender: UIButton) {
-    }
     var storedOffsets = [Int: CGFloat]()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        teachingCollection = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
+        refreshData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,6 +52,24 @@ class LovedItViewController: UITableViewController {
         guard let tableViewCell = cell as? LovedItTableViewCell else { return }
         storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
     }
+    
+    func deleteTeaching(teaching: Teaching) {
+        TeachingService.sharedInstance.deletePersistedTeaching(teaching: teaching)
+        refreshData()
+    }
+    
+    func refreshData() {
+        teachingCollection = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
+        self.tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        NSLog("Aca en el segue")
+        if segue.identifier == "teachingDetailSegue" {
+            let destinationVC = segue.destination as! TeachingDetailViewController
+            destinationVC.teaching = sender as! Teaching
+        }
+    }
 }
 
 extension LovedItViewController: UICollectionViewDataSource  {
@@ -71,6 +90,8 @@ extension LovedItViewController: UICollectionViewDataSource  {
 
         let teaching = teachingList[indexPath.row]
         
+        cell.deleteTeachingDelegate = self
+        cell.teaching = teaching
         cell.titleLabel.text = teaching.title
         cell.teachingImageView.image = UIImage(named: teaching.imageName)
         return cell
@@ -83,15 +104,15 @@ extension LovedItViewController: UICollectionViewDataSource  {
         
         return teachingList
     }
+    
 }
 
 extension LovedItViewController: UICollectionViewDelegate  {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        _ = cell as! LovedItCategoryCollectionViewCell
-        NSLog("Ahora en el collectionView willDisplay \(indexPath.row)")
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         NSLog("Ahora en el collectionView didSelectItemAt \(indexPath.row)")
+        let teachingList = getTeachingFromDictionary(categoryTag: collectionView.tag)
+        let teaching = teachingList[indexPath.row]
+        
+        self.performSegue(withIdentifier: "teachingDetailSegue", sender: teaching)
     }
 }

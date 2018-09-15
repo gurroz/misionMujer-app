@@ -76,19 +76,19 @@ class TeachingService {
     
     func getTeachingCategoryDictionary() ->[String:[Teaching]]
     {
-        var teachingDictionary:[String:[Teaching]] = [:]
+        var categoryTeachingDictionary:[String:[Teaching]] = [:]
         for teaching in getPersistedTeachingList() {
             let teachingCategories = teaching.category
             for category in teachingCategories {
                 let categoryCleaned = cleanCatName(categoryName: category)
-                var actualList = teachingDictionary[categoryCleaned] ?? [Teaching]()
+                var actualList = categoryTeachingDictionary[categoryCleaned] ?? [Teaching]()
                 actualList.append(teaching)
                 
-                teachingDictionary.updateValue(actualList, forKey: categoryCleaned)
+                categoryTeachingDictionary.updateValue(actualList, forKey: categoryCleaned)
             }
         }
         
-        return teachingDictionary
+        return categoryTeachingDictionary
     }
     
 }
