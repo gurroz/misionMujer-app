@@ -70,6 +70,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYI-n1-ob3">
                                                     <rect key="frame" x="146" y="27.666666666666664" width="244" height="24"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="newsTableLabel"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.92941176469999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -110,6 +111,9 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="newsTableId"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="1jf-mM-2jy" id="REK-FC-nac"/>
                             <outlet property="delegate" destination="1jf-mM-2jy" id="deC-26-nun"/>
@@ -322,13 +326,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsV-ge-sJP">
-                                        <rect key="frame" x="184.33333333333334" y="348" width="31" height="14"/>
+                                        <rect key="frame" x="183.66666666666666" y="348" width="31" height="14"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                         <color key="textColor" red="0.45033478059999998" green="0.44815925020000003" blue="0.45251031089999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFe-5H-3HK">
                                         <rect key="frame" x="175" y="316" width="48" height="24"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="teachingDetailLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="tft-x8-QT3"/>
                                         </constraints>
@@ -380,7 +385,6 @@
                                     <constraint firstAttribute="height" constant="370" id="9wY-sg-KFp"/>
                                     <constraint firstItem="Y73-ke-h5Z" firstAttribute="top" secondItem="f6G-Ro-sTQ" secondAttribute="top" constant="8" id="Bm2-Rv-B2H"/>
                                     <constraint firstItem="Y73-ke-h5Z" firstAttribute="leading" secondItem="zFe-5H-3HK" secondAttribute="trailing" constant="101.33333333333334" id="Gpl-xn-wJA"/>
-                                    <constraint firstItem="cLO-Fh-dMH" firstAttribute="centerX" secondItem="aad-Pw-cnS" secondAttribute="centerX" id="KnW-wb-M5h"/>
                                     <constraint firstAttribute="trailing" secondItem="Y73-ke-h5Z" secondAttribute="trailing" constant="18" id="LFX-Uq-ADA"/>
                                     <constraint firstAttribute="trailing" secondItem="hMF-hY-LKP" secondAttribute="trailing" constant="8" id="MYn-MO-PW0"/>
                                     <constraint firstAttribute="trailing" secondItem="zFe-5H-3HK" secondAttribute="trailing" constant="126" id="Meb-rt-xxv"/>
@@ -418,12 +422,12 @@
                                         <exclude reference="qEs-bN-3ak"/>
                                         <exclude reference="2g6-lU-C4a"/>
                                         <exclude reference="Wq0-Oy-cbp"/>
-                                        <exclude reference="mRU-1N-HoS"/>
                                         <exclude reference="0tU-eV-tYS"/>
                                         <exclude reference="lcO-W6-xAg"/>
                                         <exclude reference="XAY-uK-W3D"/>
                                         <exclude reference="Meb-rt-xxv"/>
                                         <exclude reference="Wc2-4J-czn"/>
+                                        <exclude reference="mRU-1N-HoS"/>
                                         <exclude reference="Bm2-Rv-B2H"/>
                                         <exclude reference="LFX-Uq-ADA"/>
                                     </mask>
@@ -444,9 +448,6 @@
                                         <exclude reference="Mh3-Hu-tIs"/>
                                         <include reference="Wq0-Oy-cbp"/>
                                         <exclude reference="eKy-PS-0s4"/>
-                                        <exclude reference="82I-d0-2Sa"/>
-                                        <include reference="mRU-1N-HoS"/>
-                                        <exclude reference="tXj-m4-MZl"/>
                                         <include reference="0tU-eV-tYS"/>
                                         <exclude reference="f9R-Uu-xa5"/>
                                         <include reference="lcO-W6-xAg"/>
@@ -458,6 +459,9 @@
                                         <exclude reference="OoM-Qg-8Db"/>
                                         <include reference="Wc2-4J-czn"/>
                                         <exclude reference="sQd-4a-8Yy"/>
+                                        <exclude reference="82I-d0-2Sa"/>
+                                        <include reference="mRU-1N-HoS"/>
+                                        <exclude reference="tXj-m4-MZl"/>
                                         <include reference="Bm2-Rv-B2H"/>
                                         <exclude reference="Gpl-xn-wJA"/>
                                         <include reference="LFX-Uq-ADA"/>
@@ -571,7 +575,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTr-81-Eiq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3153.6231884057975" y="335.86956521739131"/>
+            <point key="canvasLocation" x="3153.2608695652175" y="334.78260869565219"/>
         </scene>
         <!--Search-->
         <scene sceneID="KdO-bi-k75">
@@ -626,7 +630,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="uYn-Y5-RgH" firstAttribute="leading" secondItem="7vi-6G-u6P" secondAttribute="trailing" constant="133" id="164-7F-brs"/>
+                                                <constraint firstItem="uYn-Y5-RgH" firstAttribute="leading" relation="lessThanOrEqual" secondItem="7vi-6G-u6P" secondAttribute="trailing" constant="133" id="164-7F-brs"/>
                                                 <constraint firstItem="zLI-G0-72h" firstAttribute="leading" secondItem="dTf-6c-Ao9" secondAttribute="leadingMargin" id="B3K-fT-Iit"/>
                                                 <constraint firstItem="nvB-V2-TtF" firstAttribute="leading" secondItem="zLI-G0-72h" secondAttribute="trailing" constant="8" id="CvQ-6Q-FAq"/>
                                                 <constraint firstItem="uYn-Y5-RgH" firstAttribute="top" secondItem="SqF-rX-oDj" secondAttribute="top" constant="127" id="D4i-H8-gFh"/>
@@ -758,6 +762,9 @@
                                         <constraint firstItem="wvw-JB-neP" firstAttribute="top" secondItem="W1K-v6-tjZ" secondAttribute="top" constant="8" id="gUj-K5-mEY"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="categoryTeachColl">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="backgroundCardView" destination="wvw-JB-neP" id="P4y-N6-pSo"/>
                                     <outlet property="categoryLabel" destination="oNT-tY-if5" id="pQ3-cl-F6Y"/>
@@ -818,10 +825,10 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Love-->
+        <!--Loved-->
         <scene sceneID="uhu-wZ-Inf">
             <objects>
-                <tableViewController title="Love" id="Hn6-Bg-uwY" customClass="LovedItViewController" customModule="MisionMujer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Loved" id="Hn6-Bg-uwY" customClass="LovedItViewController" customModule="MisionMujer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cbB-EK-GUe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -839,6 +846,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utO-gk-ORg">
                                                     <rect key="frame" x="16" y="16" width="366" height="24"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="categoryLabelLoved"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.92941176469999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="0.92941176469999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -866,6 +874,9 @@
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kut-Bj-wlW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="186" height="114"/>
+                                                                        <accessibility key="accessibilityConfiguration">
+                                                                            <bool key="isElement" value="YES"/>
+                                                                        </accessibility>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="114" id="JNW-qc-vJO"/>
                                                                             <constraint firstAttribute="width" constant="186" id="hlK-aY-ieP"/>
@@ -873,6 +884,7 @@
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggq-xw-hee">
                                                                         <rect key="frame" x="0.0" y="126" width="30.666666666666668" height="14"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="lovedLabel"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                                         <color key="textColor" red="0.92941176469999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -931,6 +943,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="categoryLabel" destination="utO-gk-ORg" id="kv7-NS-8dV"/>
                                     <outlet property="teachingCollectionView" destination="fdo-FS-2kX" id="jIt-Bh-Qry"/>
@@ -942,7 +957,7 @@
                             <outlet property="delegate" destination="Hn6-Bg-uwY" id="VdB-B0-PPo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Love" id="IoB-xy-2LU"/>
+                    <navigationItem key="navigationItem" title="Loved" id="IoB-xy-2LU"/>
                     <connections>
                         <segue destination="Qv0-FM-vaL" kind="show" identifier="teachingDetailSegue" id="L1Z-Ft-EWO"/>
                     </connections>
@@ -1016,9 +1031,13 @@
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <color key="textColor" red="1" green="0.98624428419999999" blue="0.97910810729999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="homeLatestTitle"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="235" translatesAutoresizingMaskIntoConstraints="NO" id="AM6-bq-kk3">
                                                 <rect key="frame" x="24" y="275" width="298.66666666666669" height="17"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="homeLatestDescription"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.85142886640000004" green="0.85142886640000004" blue="0.85142886640000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1028,9 +1047,15 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.85142886640000004" green="0.85142886640000004" blue="0.85142886640000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="homeLatestDuration"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dtv-b2-Qk0">
                                                 <rect key="frame" x="0.0" y="32" width="398" height="280"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="homeLatestDetailBtn"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="lastButton:" destination="45v-a5-kbv" eventType="touchUpInside" id="a39-fa-W0s"/>
                                                     <segue destination="Qv0-FM-vaL" kind="show" identifier="segueToTeachingDetail" id="IfS-Wy-iNY"/>
@@ -1097,6 +1122,7 @@
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWu-5p-Qtb">
                                                                     <rect key="frame" x="61" y="106" width="48" height="24"/>
+                                                                    <accessibility key="accessibilityConfiguration" identifier="exploreCategoryLabel"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <color key="textColor" red="1" green="0.98624428419999999" blue="0.97910810729999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
@@ -1119,9 +1145,13 @@
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="exploreCategoryCollection"/>
+                                                </userDefinedRuntimeAttributes>
                                             </collectionView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="exploreView"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="398" id="4KW-4X-wfB">
                                                 <variation key="heightClass=compact" constant="500"/>

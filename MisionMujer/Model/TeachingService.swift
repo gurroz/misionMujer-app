@@ -91,4 +91,18 @@ class TeachingService {
         return categoryTeachingDictionary
     }
     
+    func getPersistedCategory() ->[String] {
+        var categories:[String] = []
+        for teaching in getPersistedTeachingList() {
+            let teachingCategories = teaching.category
+            for category in teachingCategories {
+                if !categories.contains(category) {
+                    categories.append(category)
+                }
+            }
+        }
+        
+        return categories
+    }
+    
 }

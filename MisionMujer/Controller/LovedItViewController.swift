@@ -9,7 +9,7 @@
 import UIKit
 
 class LovedItViewController: UITableViewController, TeachingPersistanceTrash {
-    var persistedCategories:[Category] = CategoryService.sharedInstance.getPersistedCategoryList()
+    var persistedCategories:[String] = TeachingService.sharedInstance.getPersistedCategory()
     var teachingCollection:[String: [Teaching]] = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
     var storedOffsets = [Int: CGFloat]()
 
@@ -33,11 +33,13 @@ class LovedItViewController: UITableViewController, TeachingPersistanceTrash {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lovedItCell", for: indexPath) as! LovedItTableViewCell
-        let categoryName = persistedCategories[indexPath.row].title
+        let categoryName = persistedCategories[indexPath.row]
         cell.categoryLabel.text = categoryName
         cell.teachingCollectionView.delegate = self
         cell.teachingCollectionView.dataSource = self
         cell.teachingCollectionView.tag = indexPath.row
+        cell.teachingCollectionView.accessibilityIdentifier = "lovedItTable"
+
         cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
         
         return cell
@@ -59,12 +61,12 @@ class LovedItViewController: UITableViewController, TeachingPersistanceTrash {
     }
     
     func refreshData() {
+        persistedCategories = TeachingService.sharedInstance.getPersistedCategory()
         teachingCollection = TeachingService.sharedInstance.getPersistedDictoniaryTeachingList()
         self.tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        NSLog("Aca en el segue")
         if segue.identifier == "teachingDetailSegue" {
             let destinationVC = segue.destination as! TeachingDetailViewController
             destinationVC.teaching = sender as! Teaching
@@ -98,8 +100,8 @@ extension LovedItViewController: UICollectionViewDataSource  {
     }
     
     func getTeachingFromDictionary(categoryTag: Int) -> [Teaching] {
-        let category:Category = persistedCategories[categoryTag]
-        let categoryNameCleansed = TeachingService.sharedInstance.cleanCatName(categoryName: category.title)
+        let category:String = persistedCategories[categoryTag]
+        let categoryNameCleansed = TeachingService.sharedInstance.cleanCatName(categoryName: category)
         let teachingList = (teachingCollection[categoryNameCleansed] != nil) ? teachingCollection[categoryNameCleansed]! : [Teaching]()
         
         return teachingList
@@ -109,7 +111,6 @@ extension LovedItViewController: UICollectionViewDataSource  {
 
 extension LovedItViewController: UICollectionViewDelegate  {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NSLog("Ahora en el collectionView didSelectItemAt \(indexPath.row)")
         let teachingList = getTeachingFromDictionary(categoryTag: collectionView.tag)
         let teaching = teachingList[indexPath.row]
         

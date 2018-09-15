@@ -177,6 +177,10 @@ enum Teaching:Int {
         return "\(minutes) min"
     }
     
+    func getCategoriesAsString() -> String {
+        return self.category.joined(separator: ",")
+    }
+    
     static func getTeaching() ->[Teaching]
     {
         return [startDay, goodSleep, firstChakra, secondChakra, thirdChakra, thanks, calm]

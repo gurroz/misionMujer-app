@@ -23,9 +23,5 @@ class CategoryService {
     func getCategoryList() -> [Category] {
         return Array(categoryDictonary.values);
     }
-    
-    func getPersistedCategoryList() -> [Category] {
-        return Category.getLovedItCategories();
-    }
-    
+
 }

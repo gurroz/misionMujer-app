@@ -58,15 +58,9 @@ enum Category:Int {
         }
     }
     
-    
     static func getCategory() ->[Category]
     {
         return [energize, goodSleep, chakras, mindfulness]
-    }
-    
-    static func getLovedItCategories() ->[Category]
-    {
-        return [energize, goodSleep, chakras, mindfulness, mostPlayed, continueWatching]
     }
     
     static func getCategoryDictionary() ->[String:Category]
