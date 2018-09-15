@@ -16,7 +16,7 @@ class LovedItCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     @IBAction func trashBtn(_ sender: UIButton) {
-        self.deleteTeachingDelegate!.deleteTeaching(teaching: self.teaching!)
+      self.deleteTeachingDelegate!.deleteTeaching(teaching: self.teaching!)
     }
         
     var teaching: Teaching?

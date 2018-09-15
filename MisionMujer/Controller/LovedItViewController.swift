@@ -56,8 +56,23 @@ class LovedItViewController: UITableViewController, TeachingPersistanceTrash {
     }
     
     func deleteTeaching(teaching: Teaching) {
-        TeachingService.sharedInstance.deletePersistedTeaching(teaching: teaching)
-        refreshData()
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive) {
+            (action) in
+            // Respond to user selection of the action
+            TeachingService.sharedInstance.deletePersistedTeaching(teaching: teaching)
+            self.refreshData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            (action) in
+        }
+        
+        let alert = UIAlertController(title: "Delete this teaching?",message: "This will erase the file permanently", preferredStyle: .actionSheet)
+        alert.addAction(destroyAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true) {}
+        
     }
     
     func refreshData() {

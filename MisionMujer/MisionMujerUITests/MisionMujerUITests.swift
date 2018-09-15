@@ -115,9 +115,11 @@ class MisionMujerUITests: XCTestCase {
         XCTAssertEqual(textSleep, "Good Sleep")
         
         app.tables/*@START_MENU_TOKEN@*/.buttons["Button"]/*[[".cells[\"Good Sleep, Get a good sleep\"].buttons[\"Button\"]",".buttons[\"Button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.sheets["Delete this teaching?"].buttons["Delete"].tap()
         
         let teachingCont = app.tables/*@START_MENU_TOKEN@*/.staticTexts["categoryLabelLoved"]/*[[".cells[\"Good Sleep, Get a good sleep\"]",".staticTexts[\"Good Sleep\"]",".staticTexts[\"categoryLabelLoved\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
         XCTAssertFalse(teachingCont.exists)
+        
     }
     
 }
