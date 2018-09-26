@@ -16,6 +16,8 @@
 		9A71A1402144D545000C96A0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A13F2144D545000C96A0 /* SearchViewController.swift */; };
 		9A71A1422144D706000C96A0 /* TeachingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */; };
 		9A71A1442144D86F000C96A0 /* Teaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A1432144D86F000C96A0 /* Teaching.swift */; };
+		9A884AAC215BC15C00EC169D /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884AAB215BC15C00EC169D /* Configurations.swift */; };
+		9A884AAE215BCE2900EC169D /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884AAD215BCE2900EC169D /* News.swift */; };
 		9AD2DA22213B9AA0007B0D62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA21213B9AA0007B0D62 /* AppDelegate.swift */; };
 		9AD2DA29213B9AA0007B0D62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD2DA27213B9AA0007B0D62 /* Main.storyboard */; };
 		9AD2DA2B213B9AA1007B0D62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD2DA2A213B9AA1007B0D62 /* Assets.xcassets */; };
@@ -23,7 +25,7 @@
 		9AD2DA39213B9AA1007B0D62 /* MisionMujerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA38213B9AA1007B0D62 /* MisionMujerTests.swift */; };
 		9AD2DA44213B9AA1007B0D62 /* MisionMujerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA43213B9AA1007B0D62 /* MisionMujerUITests.swift */; };
 		9AD2DA54213C1478007B0D62 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA53213C1478007B0D62 /* NewsViewController.swift */; };
-		9AD2DA56213C18C5007B0D62 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA55213C18C5007B0D62 /* News.swift */; };
+		9AD2DA56213C18C5007B0D62 /* NewsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA55213C18C5007B0D62 /* NewsEnum.swift */; };
 		9AD2DA58213C1EC9007B0D62 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA57213C1EC9007B0D62 /* NewsService.swift */; };
 		9AF48E1121457E2D00C2DCEB /* LovedItViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E1021457E2D00C2DCEB /* LovedItViewController.swift */; };
 		9AF48E132145EE1000C2DCEB /* LovedItTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */; };
@@ -60,6 +62,8 @@
 		9A71A13F2144D545000C96A0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachingTableViewCell.swift; sourceTree = "<group>"; };
 		9A71A1432144D86F000C96A0 /* Teaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teaching.swift; sourceTree = "<group>"; };
+		9A884AAB215BC15C00EC169D /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
+		9A884AAD215BCE2900EC169D /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		9AD2DA1E213B9AA0007B0D62 /* MisionMujer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MisionMujer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD2DA21213B9AA0007B0D62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD2DA28213B9AA0007B0D62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,7 +77,7 @@
 		9AD2DA43213B9AA1007B0D62 /* MisionMujerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisionMujerUITests.swift; sourceTree = "<group>"; };
 		9AD2DA45213B9AA1007B0D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD2DA53213C1478007B0D62 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		9AD2DA55213C18C5007B0D62 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		9AD2DA55213C18C5007B0D62 /* NewsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEnum.swift; sourceTree = "<group>"; };
 		9AD2DA57213C1EC9007B0D62 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		9AF48E1021457E2D00C2DCEB /* LovedItViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedItViewController.swift; sourceTree = "<group>"; };
 		9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedItTableViewCell.swift; sourceTree = "<group>"; };
@@ -182,12 +186,14 @@
 		9AD2DA52213BCAD1007B0D62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9AD2DA55213C18C5007B0D62 /* News.swift */,
+				9AD2DA55213C18C5007B0D62 /* NewsEnum.swift */,
 				9A38E6E721453ED5005DC846 /* Category.swift */,
 				9A71A1432144D86F000C96A0 /* Teaching.swift */,
 				9AD2DA57213C1EC9007B0D62 /* NewsService.swift */,
 				9A38E6E921453FF4005DC846 /* CategoryService.swift */,
 				9A38E6E32144E21D005DC846 /* TeachingService.swift */,
+				9A884AAB215BC15C00EC169D /* Configurations.swift */,
+				9A884AAD215BCE2900EC169D /* News.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,24 +329,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD2DA58213C1EC9007B0D62 /* NewsService.swift in Sources */,
 				9A38E6E821453ED5005DC846 /* Category.swift in Sources */,
 				9A1CF35D214C08550058E4B5 /* LovedItCategoryCollectionViewCell.swift in Sources */,
 				9A71A1442144D86F000C96A0 /* Teaching.swift in Sources */,
 				9AF48E152146311E00C2DCEB /* CategoryTeachingViewController.swift in Sources */,
 				9AF48E192146BA4200C2DCEB /* TeachingDetailViewController.swift in Sources */,
+				9A884AAC215BC15C00EC169D /* Configurations.swift in Sources */,
 				9A38E6EA21453FF4005DC846 /* CategoryService.swift in Sources */,
 				9AF48E1121457E2D00C2DCEB /* LovedItViewController.swift in Sources */,
 				9A38E6E42144E21D005DC846 /* TeachingService.swift in Sources */,
 				9AF48E132145EE1000C2DCEB /* LovedItTableViewCell.swift in Sources */,
 				9A71A1402144D545000C96A0 /* SearchViewController.swift in Sources */,
-				9AF48E1721463E7500C2DCEB /* NewsDetailViewController.swift in Sources */,
 				9AD2DA22213B9AA0007B0D62 /* AppDelegate.swift in Sources */,
-				9A260659214A9286006D7D04 /* NewsSplitViewController.swift in Sources */,
 				9A38E6E6214529D1005DC846 /* HomeViewController.swift in Sources */,
 				9AFC2C322148D77300003C75 /* SplashScreenController.swift in Sources */,
 				9A71A1422144D706000C96A0 /* TeachingTableViewCell.swift in Sources */,
-				9AD2DA56213C18C5007B0D62 /* News.swift in Sources */,
+				9A260659214A9286006D7D04 /* NewsSplitViewController.swift in Sources */,
+				9AF48E1721463E7500C2DCEB /* NewsDetailViewController.swift in Sources */,
+				9AD2DA58213C1EC9007B0D62 /* NewsService.swift in Sources */,
+				9A884AAE215BCE2900EC169D /* News.swift in Sources */,
+				9AD2DA56213C18C5007B0D62 /* NewsEnum.swift in Sources */,
 				9AD2DA54213C1478007B0D62 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
