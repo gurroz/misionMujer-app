@@ -637,10 +637,18 @@
                                                     <color key="textColor" red="0.45033478059999998" green="0.44815925020000003" blue="0.45251031089999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Uly-aS-ejS">
+                                                    <rect key="frame" x="68" y="65" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="8xc-Hm-G9E"/>
+                                                        <constraint firstAttribute="height" constant="20" id="tLb-qw-39w"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="uYn-Y5-RgH" firstAttribute="leading" relation="lessThanOrEqual" secondItem="7vi-6G-u6P" secondAttribute="trailing" constant="133" id="164-7F-brs"/>
+                                                <constraint firstItem="Uly-aS-ejS" firstAttribute="top" secondItem="SqF-rX-oDj" secondAttribute="top" constant="65" id="ACV-nY-CYL"/>
                                                 <constraint firstItem="zLI-G0-72h" firstAttribute="leading" secondItem="dTf-6c-Ao9" secondAttribute="leadingMargin" id="B3K-fT-Iit"/>
                                                 <constraint firstItem="nvB-V2-TtF" firstAttribute="leading" secondItem="zLI-G0-72h" secondAttribute="trailing" constant="8" id="CvQ-6Q-FAq"/>
                                                 <constraint firstItem="uYn-Y5-RgH" firstAttribute="top" secondItem="SqF-rX-oDj" secondAttribute="top" constant="127" id="D4i-H8-gFh"/>
@@ -653,6 +661,7 @@
                                                 <constraint firstItem="7vi-6G-u6P" firstAttribute="top" secondItem="SqF-rX-oDj" secondAttribute="top" constant="124" id="XQ6-vJ-8bd"/>
                                                 <constraint firstItem="SqF-rX-oDj" firstAttribute="bottom" secondItem="uYn-Y5-RgH" secondAttribute="bottom" constant="8" id="bBY-SI-UR7"/>
                                                 <constraint firstItem="nvB-V2-TtF" firstAttribute="top" secondItem="SqF-rX-oDj" secondAttribute="top" constant="11" id="cs4-bx-F2c"/>
+                                                <constraint firstItem="Uly-aS-ejS" firstAttribute="leading" secondItem="SqF-rX-oDj" secondAttribute="leading" constant="68" id="fCT-f0-6B0"/>
                                                 <constraint firstItem="7vi-6G-u6P" firstAttribute="leading" secondItem="zLI-G0-72h" secondAttribute="trailing" constant="8" id="nlc-Z0-EED"/>
                                                 <constraint firstItem="SqF-rX-oDj" firstAttribute="bottom" secondItem="7vi-6G-u6P" secondAttribute="bottom" constant="11" id="roF-CE-Ubs"/>
                                                 <constraint firstItem="SqF-rX-oDj" firstAttribute="bottom" secondItem="nvB-V2-TtF" secondAttribute="bottom" constant="118" id="y4F-1k-6yd"/>
@@ -673,6 +682,7 @@
                                     <outlet property="categoryLabel" destination="7vi-6G-u6P" id="mhV-xw-gQz"/>
                                     <outlet property="descriptionLabel" destination="qWy-vP-L92" id="XLQ-X1-IGC"/>
                                     <outlet property="durationLabel" destination="uYn-Y5-RgH" id="jGB-08-Sae"/>
+                                    <outlet property="loadingImage" destination="Uly-aS-ejS" id="fT1-RF-dGQ"/>
                                     <outlet property="teachingImageView" destination="zLI-G0-72h" id="Bc3-uc-68V"/>
                                     <outlet property="titleLabel" destination="nvB-V2-TtF" id="IgZ-rv-XH4"/>
                                     <segue destination="Qv0-FM-vaL" kind="show" id="6Iu-Bq-Jb6"/>
@@ -1234,6 +1244,6 @@
         <image name="trash" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="L1Z-Ft-EWO"/>
+        <segue reference="6Iu-Bq-Jb6"/>
     </inferredMetricsTieBreakers>
 </document>

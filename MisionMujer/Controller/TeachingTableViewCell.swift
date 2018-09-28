@@ -20,4 +20,5 @@ class TeachingTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var loadingImage: UIActivityIndicatorView!
 }

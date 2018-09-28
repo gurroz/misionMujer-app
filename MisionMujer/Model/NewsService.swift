@@ -14,9 +14,7 @@ class NewsService {
 
     static let sharedInstance = NewsService()
     
-    private init() {
-//        newsDictonary = News.getNewsDictionary()
-    }
+    private init() {}
     
     func getDefaulNews() -> News {
         return News()!

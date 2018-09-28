@@ -25,7 +25,6 @@
 		9AD2DA39213B9AA1007B0D62 /* MisionMujerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA38213B9AA1007B0D62 /* MisionMujerTests.swift */; };
 		9AD2DA44213B9AA1007B0D62 /* MisionMujerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA43213B9AA1007B0D62 /* MisionMujerUITests.swift */; };
 		9AD2DA54213C1478007B0D62 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA53213C1478007B0D62 /* NewsViewController.swift */; };
-		9AD2DA56213C18C5007B0D62 /* NewsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA55213C18C5007B0D62 /* NewsEnum.swift */; };
 		9AD2DA58213C1EC9007B0D62 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD2DA57213C1EC9007B0D62 /* NewsService.swift */; };
 		9AF48E1121457E2D00C2DCEB /* LovedItViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E1021457E2D00C2DCEB /* LovedItViewController.swift */; };
 		9AF48E132145EE1000C2DCEB /* LovedItTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */; };
@@ -77,7 +76,6 @@
 		9AD2DA43213B9AA1007B0D62 /* MisionMujerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisionMujerUITests.swift; sourceTree = "<group>"; };
 		9AD2DA45213B9AA1007B0D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD2DA53213C1478007B0D62 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		9AD2DA55213C18C5007B0D62 /* NewsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEnum.swift; sourceTree = "<group>"; };
 		9AD2DA57213C1EC9007B0D62 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		9AF48E1021457E2D00C2DCEB /* LovedItViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedItViewController.swift; sourceTree = "<group>"; };
 		9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedItTableViewCell.swift; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 		9AD2DA52213BCAD1007B0D62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9AD2DA55213C18C5007B0D62 /* NewsEnum.swift */,
 				9A38E6E721453ED5005DC846 /* Category.swift */,
 				9A71A1432144D86F000C96A0 /* Teaching.swift */,
 				9AD2DA57213C1EC9007B0D62 /* NewsService.swift */,
@@ -348,7 +345,6 @@
 				9AF48E1721463E7500C2DCEB /* NewsDetailViewController.swift in Sources */,
 				9AD2DA58213C1EC9007B0D62 /* NewsService.swift in Sources */,
 				9A884AAE215BCE2900EC169D /* News.swift in Sources */,
-				9AD2DA56213C18C5007B0D62 /* NewsEnum.swift in Sources */,
 				9AD2DA54213C1478007B0D62 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

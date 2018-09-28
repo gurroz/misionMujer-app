@@ -10,10 +10,11 @@ import UIKit
 
 class SearchViewController: UITableViewController, UISearchResultsUpdating  {
 
-    var teachingList:[Teaching] = TeachingService.sharedInstance.getTeachingList()
+    var teachingList:[Teaching] = [Teaching]()
     var filteredTeaching = [Teaching]()
 
     let searchController = UISearchController(searchResultsController:nil)
+    var activityIndicatorView: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +22,15 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
+        
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        tableView.backgroundView = activityIndicatorView
+        activityIndicatorView.startAnimating()
+        
+        TeachingService.sharedInstance.getRemoteTeachings(completion: updateTeachingList)
     }
     
-    func filterContentForSearchText(searchText: String, scope:String = "All")
-    {
+    func filterContentForSearchText(searchText: String, scope:String = "All") {
         filteredTeaching = teachingList.filter
         {
             teaching in return teaching.title.lowercased().contains(searchText.lowercased())
@@ -33,7 +39,6 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -73,7 +78,16 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         cell.descriptionLabel!.text = teaching.description
         cell.categoryLabel!.text = teaching.getCategoriesAsString()
         cell.durationLabel!.text = teaching.getDurationInMinutes()
-        cell.teachingImageView!.image =  UIImage(named: teaching.imageName)
+        cell.loadingImage.startAnimating()
+        
+        let url = URL(string: teaching.imageName)
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                cell.loadingImage.stopAnimating()
+                cell.teachingImageView!.image  = UIImage(data: data!)
+            }
+        }
         
         return cell
     }
@@ -88,5 +102,10 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         detailVC.teaching = teaching
     }
     
+    func updateTeachingList(teachings: [Teaching]) -> Void {
+        self.teachingList = teachings
+        self.activityIndicatorView.stopAnimating()
+        self.tableView.reloadData()
+    }
     
 }

@@ -32,8 +32,10 @@ class HomeViewController: UIViewController {
     
     @IBAction func lastButton(_ sender: UIButton){}
     
+    var activityIndicatorView: UIActivityIndicatorView!
+
     var teachingLast:Teaching = TeachingService.sharedInstance.getLatestTeaching()
-    var categoryList:[Category] = CategoryService.sharedInstance.getCategoryList()
+    var categoryList:[Category] = [Category]()
     
     override func viewDidLoad() {
         collectionView.dataSource = self
@@ -42,6 +44,19 @@ class HomeViewController: UIViewController {
         latestTitleLabel.text = teachingLast.title
         latestDescriptionLabel.text = teachingLast.description
         latestDurationLabel.text = teachingLast.getDurationInMinutes()
+        
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        collectionView.backgroundView = activityIndicatorView
+        
+        activityIndicatorView.startAnimating()
+        CategoryService.sharedInstance.getRemoteCategories(completion: updateCategoryList)
+    }
+    
+    func updateCategoryList(categories: [Category]) -> Void {
+        self.categoryList = categories
+        self.activityIndicatorView.stopAnimating()
+    
+        self.collectionView.reloadData()
     }
 }
 
@@ -57,6 +72,14 @@ extension HomeViewController:  UICollectionViewDataSource, UICollectionViewDeleg
         let category = categoryList[indexPath.row]
         cell.nameLabel!.text = category.title
         cell.categoryImageView.image = UIImage(named: category.imageName)
+        
+        let url = URL(string: category.imageName)
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                cell.categoryImageView!.image  = UIImage(data: data!)
+            }
+        }
         return cell
     }
     
