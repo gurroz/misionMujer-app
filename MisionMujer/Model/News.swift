@@ -9,7 +9,7 @@
 import Foundation
 public struct News {
     
-    var id:Int
+    var id:Int64
     var title:String
     var description:String
     var content:String
@@ -26,12 +26,12 @@ public struct News {
     }
     
     init?(json: NSDictionary) {
-        guard let id = json["id"] as? Int,
+        guard let id = json["id"] as? Int64,
             let title = json["title"] as? String,
             let description = json["description"] as? String,
             let content = json["content"] as? String,
-            let date = json["date"] as? String,
-            let imageName = json["imageName"] as? String
+            let date = json["published"] as? String,
+            let imageName = json["image"] as? String
             else {
                 return nil
             }
@@ -40,7 +40,15 @@ public struct News {
         self.title = title
         self.description = description
         self.content = content
-        self.date = date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
+        let dateParsed = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = "dd/MMM/yyyy"
+        let finalDate = dateFormatter.string(from: dateParsed!)
+        
+        self.date = finalDate
         self.imageName = imageName
     }
 }

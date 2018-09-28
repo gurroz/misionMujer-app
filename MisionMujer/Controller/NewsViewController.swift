@@ -13,6 +13,7 @@ class NewsViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageNewsView: UIImageView!
+    @IBOutlet weak var loaderImage: UIActivityIndicatorView!
     @IBOutlet weak var backgroundCardView: UIView! {
         didSet {
             backgroundCardView.layer.cornerRadius = 3.0
@@ -27,12 +28,18 @@ protocol RefreshNews {
 
 class NewsViewController: UITableViewController {
     
-    var newsList:[News] = NewsService.sharedInstance.getNewsList()
+    var activityIndicatorView: UIActivityIndicatorView!
+    var newsList:[News] = [News]()
     var actualNews: News?
     var delegate: RefreshNews?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        tableView.backgroundView = activityIndicatorView
+        activityIndicatorView.startAnimating()
+        
+        NewsService.sharedInstance.getRemotNews(completion: getNews)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,7 +58,16 @@ class NewsViewController: UITableViewController {
         cell.dateLabel!.text = news.date
         cell.descriptionLabel!.text = news.description
         cell.titleLabel!.text = news.title
-        cell.imageNewsView!.image =  UIImage(named: news.imageName)
+        cell.loaderImage.startAnimating()
+        
+        let url = URL(string: news.imageName)
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                cell.loaderImage.stopAnimating()
+                cell.imageNewsView!.image  = UIImage(data: data!)
+            }
+        }
         
         return cell
     }
@@ -74,5 +90,11 @@ class NewsViewController: UITableViewController {
         detailVC.news = news
     }
     
+    func getNews(news: [News]) -> Void {
+        self.newsList = news
+        self.activityIndicatorView.stopAnimating()
+
+        self.tableView.reloadData()
+    }
     
 }

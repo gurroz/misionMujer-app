@@ -9,7 +9,6 @@
 import Foundation
 
 class NewsService {
-    var newsList:[News]
     let session = URLSession.shared
     let NEWS_URL = Configurations.baseURL + "news/"
 
@@ -17,20 +16,13 @@ class NewsService {
     
     private init() {
 //        newsDictonary = News.getNewsDictionary()
-        newsList = [News]()
-        getRemotNews();
-    }
-
- 
-    func getNewsList() -> [News] {
-        return newsList;
     }
     
     func getDefaulNews() -> News {
         return News()!
     }
     
-    func getRemotNews() {
+    func getRemotNews(completion:  @escaping ([News]) -> Void) {
         let url = URL(string: NEWS_URL)!
         let request = URLRequest(url: url)
         
@@ -56,16 +48,20 @@ class NewsService {
                     fatalError()
                 }
                 
-                print(parsingError as Any)
                 print(parsedResult)
                 
+                var newsList:[News] = [News]()
+
                 // Extract an element from the data as an array, if your JSON response returns a dictionary you will need to convert it to an NSDictionary
-                if let newsArray = (parsedResult as AnyObject) as? NSArray {
+                if let newsArray = parsedResult as? NSArray {
                     for newsJson in newsArray {
-                        let actualNews = News(json: (newsJson as! NSDictionary))!
-                        self.newsList.append(actualNews)
+                        let newsDictionary = newsJson as! NSDictionary
+
+                        let actualNews = News(json: newsDictionary)
+                        newsList.append(actualNews!)
                     }
                 }
+                DispatchQueue.main.async(execute: {completion(newsList)})
             }
         })
         // Execute the task

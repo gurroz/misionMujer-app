@@ -55,7 +55,7 @@
                                                     <color key="textColor" red="0.92941176469999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="dummy" translatesAutoresizingMaskIntoConstraints="NO" id="Wcs-rJ-xVB">
+                                                <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Wcs-rJ-xVB">
                                                     <rect key="frame" x="8" y="27.666666666666657" width="130" height="115"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="SjP-Uh-vIV"/>
@@ -75,6 +75,13 @@
                                                     <color key="textColor" red="0.92941176469999998" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uWU-Qk-Q1z">
+                                                    <rect key="frame" x="63" y="75" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="2wy-Bb-X7Q"/>
+                                                        <constraint firstAttribute="width" constant="20" id="Vf7-07-yn2"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -87,8 +94,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="KNF-Jl-Hmg" secondAttribute="trailing" constant="8" id="gSL-1u-ZJV"/>
                                                 <constraint firstAttribute="bottom" secondItem="Wcs-rJ-xVB" secondAttribute="bottom" constant="8" id="hhq-jm-IqM"/>
                                                 <constraint firstItem="cac-uN-wxE" firstAttribute="leading" secondItem="ftA-aY-W1u" secondAttribute="leading" constant="8" id="iMT-M5-SSu"/>
+                                                <constraint firstItem="uWU-Qk-Q1z" firstAttribute="leading" secondItem="ftA-aY-W1u" secondAttribute="leading" constant="63" id="iTi-KG-YvB"/>
                                                 <constraint firstItem="yYI-n1-ob3" firstAttribute="leading" secondItem="Wcs-rJ-xVB" secondAttribute="trailing" constant="8" id="pag-id-IMK"/>
                                                 <constraint firstItem="KNF-Jl-Hmg" firstAttribute="leading" secondItem="Wcs-rJ-xVB" secondAttribute="trailing" constant="8" id="rAz-tV-nyn"/>
+                                                <constraint firstItem="uWU-Qk-Q1z" firstAttribute="top" secondItem="cac-uN-wxE" secondAttribute="bottom" constant="55.329999999999998" id="rCj-uz-goo"/>
                                                 <constraint firstItem="cac-uN-wxE" firstAttribute="top" secondItem="ftA-aY-W1u" secondAttribute="top" constant="8" id="xnG-e6-O0f"/>
                                             </constraints>
                                         </view>
@@ -107,6 +116,7 @@
                                     <outlet property="dateLabel" destination="cac-uN-wxE" id="uhx-Yc-kgI"/>
                                     <outlet property="descriptionLabel" destination="KNF-Jl-Hmg" id="zLK-2A-kex"/>
                                     <outlet property="imageNewsView" destination="Wcs-rJ-xVB" id="CGR-CV-SgK"/>
+                                    <outlet property="loaderImage" destination="uWU-Qk-Q1z" id="X5Y-3X-Cwl"/>
                                     <outlet property="titleLabel" destination="yYI-n1-ob3" id="LRo-Lk-7O5"/>
                                 </connections>
                             </tableViewCell>
@@ -1216,7 +1226,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dummy" width="128" height="128"/>
         <image name="like" width="30" height="30"/>
         <image name="meditation" width="30" height="30"/>
         <image name="megaphone_active" width="30" height="30"/>

@@ -8,5 +8,5 @@
 
 import Foundation
 struct Configurations {
-    static let baseURL = "https://ec2-54-226-176-255.compute-1.amazonaws.com:8089/"
+    static let baseURL = "https://www.misionmujer.org:8089/"
 }
