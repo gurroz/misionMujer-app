@@ -73,13 +73,15 @@ extension HomeViewController:  UICollectionViewDataSource, UICollectionViewDeleg
         cell.nameLabel!.text = category.title
         cell.categoryImageView.image = UIImage(named: category.imageName)
         
-        let url = URL(string: category.imageName)
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                cell.categoryImageView!.image  = UIImage(data: data!)
+        if let url = URL(string: category.imageName) {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    cell.categoryImageView!.image  = UIImage(data: data!)
+                }
             }
         }
+        
         return cell
     }
     

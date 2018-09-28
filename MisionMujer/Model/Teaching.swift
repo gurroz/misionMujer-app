@@ -18,7 +18,9 @@ struct Teaching {
     var duration:Int
     var type:String
     var imageName:String
-
+    var image: Data!
+    var media: String
+    
     init() {
         self.id = 0
         self.title = ""
@@ -28,18 +30,20 @@ struct Teaching {
         self.duration = 0
         self.type = ""
         self.date = ""
+        self.media = ""
     }
     
     init?(json: NSDictionary) {
         guard let id = json["id"] as? Int64,
             let title = json["title"] as? String,
             let description = json["description"] as? String,
-            let notes = json["description"] as? String, //TODO: Add this to the server
+            let notes = json["content"] as? String,
             let date = json["published"] as? String,
             let type = json["type"] as? String,
             let categories = json["categories"] as? NSArray,
-//            let duration = json["length"] as? String,
-            let imageName = json["file"] as? String //TODO: Change to cover
+            let duration = json["length"] as? Int,
+            let imageName = json["cover"] as? String,
+            let media = json["file"] as? String
             else {
                 return nil
         }
@@ -49,10 +53,15 @@ struct Teaching {
         self.description = description
         self.notes = notes
         self.imageName = imageName
-        self.duration = 0
+        self.duration = duration
         self.type = type
+        self.media = media
         self.date = getDateInFormat(dateStr: date)
         self.categories = getCategoriesFromJson(jsonCategories: categories)
+    }
+    
+    mutating func setImageAsData(imgData: Data) -> Void {
+        self.image = imgData
     }
     
     private func getDateInFormat(dateStr: String) -> String {

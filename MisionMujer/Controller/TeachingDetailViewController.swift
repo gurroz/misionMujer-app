@@ -31,7 +31,16 @@ class TeachingDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         title = teaching.title
-        teachingImageView.image = UIImage(named: teaching.imageName)
+      
+        if let url = URL(string: teaching.imageName) {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    self.teachingImageView.image   = UIImage(data: data!)
+                }
+            }
+        }
+        
         timerLabel.text = teaching.getDurationInMinutes()
         statisticsLabel.text = "0 times"
         descriptionLabel.text = teaching.notes
@@ -42,7 +51,7 @@ class TeachingDetailViewController: UIViewController {
     }
     
     func playVideo() {
-        guard let url = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4") else {
+        guard let url = URL(string: teaching.media) else {
             return
         }
         

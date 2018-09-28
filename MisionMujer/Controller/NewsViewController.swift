@@ -60,12 +60,13 @@ class NewsViewController: UITableViewController {
         cell.titleLabel!.text = news.title
         cell.loaderImage.startAnimating()
         
-        let url = URL(string: news.imageName)
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                cell.loaderImage.stopAnimating()
-                cell.imageNewsView!.image  = UIImage(data: data!)
+        if let url = URL(string: news.imageName) {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    cell.loaderImage.stopAnimating()
+                    cell.imageNewsView!.image  = UIImage(data: data!)
+                }
             }
         }
         

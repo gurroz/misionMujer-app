@@ -12,8 +12,6 @@ struct Category {
     var id: Int64
     var title:String
     var imageName:String
-
-
     
     init?(json: NSDictionary) {
         guard let id = json["id"] as? Int64,
@@ -21,7 +19,7 @@ struct Category {
             let imageName = json["image"] as? String
             else {
                 return nil
-        }
+            }
         
         self.id = id
         self.title = title

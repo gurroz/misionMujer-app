@@ -80,15 +80,16 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         cell.durationLabel!.text = teaching.getDurationInMinutes()
         cell.loadingImage.startAnimating()
         
-        let url = URL(string: teaching.imageName)
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                cell.loadingImage.stopAnimating()
-                cell.teachingImageView!.image  = UIImage(data: data!)
+        if  let url = URL(string: teaching.imageName)  {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    cell.loadingImage.stopAnimating()
+                    cell.teachingImageView!.image  = UIImage(data: data!)
+                }
             }
         }
-        
+
         return cell
     }
     
