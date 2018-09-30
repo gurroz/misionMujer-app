@@ -27,7 +27,7 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         tableView.backgroundView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
-        TeachingService.sharedInstance.getRemoteTeachings(completion: updateTeachingList)
+        TeachingService.sharedInstance.getTeachingList(completion: updateTeachingList)
     }
     
     func filterContentForSearchText(searchText: String, scope:String = "All") {
@@ -103,8 +103,8 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         detailVC.teaching = teaching
     }
     
-    func updateTeachingList(teachings: [Teaching]) -> Void {
-        self.teachingList = teachings
+    func updateTeachingList(teachings: [Teaching]?) {
+        self.teachingList = teachings!
         self.activityIndicatorView.stopAnimating()
         self.tableView.reloadData()
     }

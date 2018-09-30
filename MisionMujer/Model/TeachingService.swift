@@ -9,53 +9,17 @@
 import Foundation
 class TeachingService {
     static let sharedInstance = TeachingService()
-    let session = URLSession.shared
-    let TEACHING_URL = Configurations.baseURL + "teachings/"
-    
-    private init() {}
 
-    func getRemoteTeachings(completion:  @escaping ([Teaching]) -> Void) {
-        let url = URL(string: TEACHING_URL)!
-        let request = URLRequest(url: url)
-        
-        // Initialise the task for getting the data
-        let task = session.dataTask(with: request, completionHandler: {data, response, downloadError in
-            if let error = downloadError {
-                print(error)
-            } else {
-                // Parse the data received from the service
-                let parsedResult: Any!
-                do {
-                    parsedResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-                } catch let error as NSError {
-                    print(error)
-                    parsedResult = nil
-                } catch {
-                    fatalError()
-                }
-                
-                var teachingsList:[Teaching] = [Teaching]()
-                
-                // Extract an element from the data as an array, if your JSON response returns a dictionary you will need to convert it to an NSDictionary
-                if let teachingsArray = parsedResult as? NSArray {
-                    for teachingJson in teachingsArray {
-                        let teachingDictionary = teachingJson as! NSDictionary
-                        
-                        let actualTeaching = Teaching(json: teachingDictionary)
-                        teachingsList.append(actualTeaching!)
-                    }
-                }
-                DispatchQueue.main.async(execute: {completion(teachingsList)})
-            }
-        })
-        // Execute the task
-        task.resume()
+    private let teachingHandler: TeachingHandler
+    
+    private init() {
+        let teachingApiHandler = TeachingAPI(nextHandler: nil)
+        teachingHandler = TeachingCache(nextHandler: teachingApiHandler)
     }
     
     
-    func getTeachingList() -> [Teaching] {
-//        return Array(teachingDictonary.values);
-        return [Teaching]()
+    func getTeachingList(completion: (([Teaching]?) -> ())?) -> Void {
+        teachingHandler.getAllTeachings(onCompleted: completion)
     }
     
     func getLatestTeaching() -> Teaching {

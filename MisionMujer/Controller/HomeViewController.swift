@@ -49,11 +49,13 @@ class HomeViewController: UIViewController {
         collectionView.backgroundView = activityIndicatorView
         
         activityIndicatorView.startAnimating()
-        CategoryService.sharedInstance.getRemoteCategories(completion: updateCategoryList)
+        CategoryService.sharedInstance.getCategoryList(completion: updateCategoryList)
     }
     
-    func updateCategoryList(categories: [Category]) -> Void {
-        self.categoryList = categories
+    func updateCategoryList(categories: [Category]?) {
+        if categories != nil {
+            self.categoryList = categories!
+        }
         self.activityIndicatorView.stopAnimating()
     
         self.collectionView.reloadData()

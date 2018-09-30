@@ -39,7 +39,7 @@ class NewsViewController: UITableViewController {
         tableView.backgroundView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
-        NewsService.sharedInstance.getRemotNews(completion: getNews)
+        NewsService.sharedInstance.getNewsList(completion: getNews)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -91,8 +91,10 @@ class NewsViewController: UITableViewController {
         detailVC.news = news
     }
     
-    func getNews(news: [News]) -> Void {
-        self.newsList = news
+    func getNews(news: [News]?) {
+        if news != nil {
+            self.newsList = news!
+        }
         self.activityIndicatorView.stopAnimating()
 
         self.tableView.reloadData()
