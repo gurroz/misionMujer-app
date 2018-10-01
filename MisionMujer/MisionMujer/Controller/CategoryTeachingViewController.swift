@@ -43,7 +43,17 @@ class CategoryTeachingViewController: UITableViewController  {
         cell.descriptionLabel!.text = teaching.description
         cell.categoryLabel!.text = teaching.getCategoriesAsString()
         cell.durationLabel!.text = teaching.getDurationInMinutes()
-        cell.teachingImageView!.image =  UIImage(named: teaching.imageName)
+        cell.categoryLoadingImage.startAnimating()
+        
+        if  let url = URL(string: teaching.imageName)  {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    cell.categoryLoadingImage.stopAnimating()
+                    cell.teachingImageView!.image  = UIImage(data: data!)
+                }
+            }
+        }
         
         return cell
     }

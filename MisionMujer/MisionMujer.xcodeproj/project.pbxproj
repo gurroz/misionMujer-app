@@ -14,6 +14,7 @@
 		9A38E6E821453ED5005DC846 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E721453ED5005DC846 /* Category.swift */; };
 		9A38E6EA21453FF4005DC846 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E921453FF4005DC846 /* CategoryService.swift */; };
 		9A54FA5A21612B2600A01F1B /* TeachingData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AAA865E215F672000622F73 /* TeachingData.xcdatamodeld */; };
+		9A54FA6021621DEB00A01F1B /* MediaDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A54FA5F21621DEB00A01F1B /* MediaDownloadService.swift */; };
 		9A71A1402144D545000C96A0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A13F2144D545000C96A0 /* SearchViewController.swift */; };
 		9A71A1422144D706000C96A0 /* TeachingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */; };
 		9A71A1442144D86F000C96A0 /* Teaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71A1432144D86F000C96A0 /* Teaching.swift */; };
@@ -70,6 +71,7 @@
 		9A38E6E5214529D1005DC846 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9A38E6E721453ED5005DC846 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9A38E6E921453FF4005DC846 /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		9A54FA5F21621DEB00A01F1B /* MediaDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloadService.swift; sourceTree = "<group>"; };
 		9A71A13F2144D545000C96A0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9A71A1412144D706000C96A0 /* TeachingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachingTableViewCell.swift; sourceTree = "<group>"; };
 		9A71A1432144D86F000C96A0 /* Teaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teaching.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				9AF49A5721611C2300A9A655 /* NewsAPI.swift */,
 				9A884AAD215BCE2900EC169D /* News.swift */,
 				9AF49A532161194F00A9A655 /* NewsHandler.swift */,
+				9A54FA5F21621DEB00A01F1B /* MediaDownloadService.swift */,
 				9AAA8663215F785500622F73 /* StatisticsDB.swift */,
 				9A71A1432144D86F000C96A0 /* Teaching.swift */,
 				9AAA8661215F785500622F73 /* TeachingDB.swift */,
@@ -307,6 +310,11 @@
 				TargetAttributes = {
 					9AD2DA1D213B9AA0007B0D62 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					9AD2DA33213B9AA1007B0D62 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -391,6 +399,7 @@
 				9AAA8667215F785500622F73 /* TeachingDB.swift in Sources */,
 				9A71A1402144D545000C96A0 /* SearchViewController.swift in Sources */,
 				9AD2DA22213B9AA0007B0D62 /* AppDelegate.swift in Sources */,
+				9A54FA6021621DEB00A01F1B /* MediaDownloadService.swift in Sources */,
 				9A38E6E6214529D1005DC846 /* HomeViewController.swift in Sources */,
 				9AF49A542161194F00A9A655 /* NewsHandler.swift in Sources */,
 				9A71A1422144D706000C96A0 /* TeachingTableViewCell.swift in Sources */,

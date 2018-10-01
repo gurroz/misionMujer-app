@@ -83,7 +83,7 @@ struct Teaching {
         self.categories = getCategoriesFromDB(categoriesDB: data.categories!)
     }
     
-    mutating func setImageAsData(imgData: NSData) -> Void {
+    mutating func setImageAsData(_ imgData: NSData) -> Void {
         self.image = imgData
     }
     

@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var latestDescriptionLabel: UILabel!
     @IBOutlet weak var latestDurationLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingImage: UIActivityIndicatorView!
     
     @IBOutlet weak var latestView: UIView! {
         didSet {
@@ -34,22 +35,21 @@ class HomeViewController: UIViewController {
     
     var activityIndicatorView: UIActivityIndicatorView!
 
-    var teachingLast:Teaching = TeachingService.sharedInstance.getLatestTeaching()
+    var teachingLast:Teaching = Teaching()
     var categoryList:[Category] = [Category]()
     
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        latestImageView.image = UIImage(named: teachingLast.imageName)
-        latestTitleLabel.text = teachingLast.title
-        latestDescriptionLabel.text = teachingLast.description
-        latestDurationLabel.text = teachingLast.getDurationInMinutes()
         
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         collectionView.backgroundView = activityIndicatorView
         
         activityIndicatorView.startAnimating()
+        loadingImage.startAnimating()
+        
         CategoryService.sharedInstance.getCategoryList(completion: updateCategoryList)
+        TeachingService.sharedInstance.getTeachingList(completion: updateTeachingLatest)
     }
     
     func updateCategoryList(categories: [Category]?) {
@@ -59,6 +59,27 @@ class HomeViewController: UIViewController {
         self.activityIndicatorView.stopAnimating()
     
         self.collectionView.reloadData()
+    }
+    
+    func updateTeachingLatest(teachings: [Teaching]?) {
+        if (teachings?.count)! > 0 {
+            self.teachingLast = teachings![0]
+
+            if let url = URL(string: teachingLast.imageName) {
+                DispatchQueue.global().async {
+                    let data = try? Data(contentsOf: url)
+                    DispatchQueue.main.async {
+                        self.latestImageView.image = UIImage(data: data!)
+                    }
+                }
+            }
+            
+            latestTitleLabel.text = teachingLast.title
+            latestDescriptionLabel.text = teachingLast.description
+            latestDurationLabel.text = teachingLast.getDurationInMinutes()
+
+        }
+        self.loadingImage.stopAnimating()
     }
 }
 
@@ -74,11 +95,13 @@ extension HomeViewController:  UICollectionViewDataSource, UICollectionViewDeleg
         let category = categoryList[indexPath.row]
         cell.nameLabel!.text = category.title
         cell.categoryImageView.image = UIImage(named: category.imageName)
+        cell.loadingImage.startAnimating()
         
         if let url = URL(string: category.imageName) {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
+                    cell.loadingImage.stopAnimating()
                     cell.categoryImageView!.image  = UIImage(data: data!)
                 }
             }
@@ -109,5 +132,6 @@ class CategoryViewCell : UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var categoryImageView: UIImageView!
+    @IBOutlet weak var loadingImage: UIActivityIndicatorView!
 }
 

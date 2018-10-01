@@ -111,8 +111,9 @@ extension LovedItViewController: UICollectionViewDataSource  {
         cell.deleteTeachingDelegate = self
         cell.teaching = teaching
         cell.titleLabel.text = teaching.title
-        cell.teachingImageView.image = UIImage(named: teaching.imageName)
+        cell.teachingImageView.image = UIImage(data: teaching.image as Data)
         return cell
+        
     }
     
     func getTeachingFromDictionary(categoryId: Int) -> [Teaching] {

@@ -21,32 +21,41 @@ class TeachingDetailViewController: UIViewController {
         persistTeaching()
     }
     
+    @IBOutlet weak var loadingImage: UIActivityIndicatorView!
     @IBOutlet weak var loveItImageBtn: UIButton!
     @IBAction func playButton(_ sender: UIButton) {
        playVideo()
     }
+    @IBOutlet weak var downloadProgress: UIView!
     
     var teaching:Teaching = Teaching()
     var isTeachingPersisted: Bool = false
     
     override func viewDidLoad() {
-        title = teaching.title
-      
-        if let url = URL(string: teaching.imageName) {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    self.teachingImageView.image   = UIImage(data: data!)
+        isTeachingPersisted = TeachingService.sharedInstance.isTeachingPersisted(teaching: teaching)
+        
+        if (isTeachingPersisted  && teaching.image != nil) {
+            self.teachingImageView.image = UIImage(data: teaching.image as Data)
+        } else {
+            loadingImage.startAnimating()
+            if let url = URL(string: teaching.imageName) {
+                DispatchQueue.global().async {
+                    let data = try? Data(contentsOf: url)
+                    self.teaching.setImageAsData(data! as NSData)
+                    DispatchQueue.main.async {
+                        self.teachingImageView.image = UIImage(data: data!)
+                        self.loadingImage.stopAnimating()
+                    }
                 }
             }
         }
         
+        title = teaching.title
         timerLabel.text = teaching.getDurationInMinutes()
-        statisticsLabel.text = String(teaching.views)
+        statisticsLabel.text = "\(String(teaching.views)) views"
         descriptionLabel.text = teaching.notes
         dateLabel.text = teaching.date
         
-        isTeachingPersisted = TeachingService.sharedInstance.isTeachingPersisted(teaching: teaching)
         updateLoveItImageStatus()
     }
     
@@ -55,7 +64,10 @@ class TeachingDetailViewController: UIViewController {
             return
         }
         
-        TeachingService.sharedInstance.updateTeachingStatistics(teaching: teaching)
+        if !isTeachingPersisted {
+            TeachingService.sharedInstance.updateTeachingStatistics(teaching: teaching)
+            statisticsLabel.text = "\(String(teaching.views + 1)) views"
+        }
         
         // Create an AVPlayer, passing it the HTTP Live Streaming URL.
         let player = AVPlayer(url: url)
@@ -71,10 +83,22 @@ class TeachingDetailViewController: UIViewController {
     
     func persistTeaching() {
         if !isTeachingPersisted {
-            TeachingService.sharedInstance.persistTeaching(teaching: teaching)
-            isTeachingPersisted = true;
-            updateLoveItImageStatus()
+            loveItImageBtn.isHidden = true
+            TeachingService.sharedInstance.persistTeaching(teaching: teaching, onSuccess: successPersisting, onError: errorPersisting)
         }
+    }
+    
+    func successPersisting() {
+        isTeachingPersisted = true
+        loveItImageBtn.isHidden = false
+        updateLoveItImageStatus()
+    }
+    
+    func errorPersisting(_ msg: String) {
+        loveItImageBtn.isHidden = false
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func updateLoveItImageStatus() {

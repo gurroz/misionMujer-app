@@ -31,11 +31,6 @@ class TeachingService {
         teachingHandler.getAllTeachings(onCompleted: completion)
     }
     
-    func getLatestTeaching() -> Teaching { // TODO: Get latest FROM Chain
-//        teachingHandler.getAllTeachings(onCompleted: completion)
-        return Teaching()
-    }
-    
     func getPersistedTeachingList() -> [Teaching] {
         let teachingsDB: [TeachingDB] = self.getTeachingsDB()
         var teachings: [Teaching] =  [Teaching]()
@@ -82,8 +77,8 @@ class TeachingService {
         return false
     }
     
-    func persistTeaching(teaching: Teaching) {
-        self.saveTeaching(teaching: teaching)
+    func persistTeaching(teaching: Teaching, onSuccess: @escaping () -> (), onError: @escaping (String) -> ()) {
+//        self.storeVideo(teaching: teaching,onSuccess: onSuccess, onSaved: self.saveTeaching, onError: onError)
     }
     
     func deletePersistedTeaching(teaching: Teaching) {
@@ -124,7 +119,7 @@ class TeachingService {
 extension TeachingService {
     // MARK: - CRUD
     
-    private func saveTeaching(teaching: Teaching) {
+    private func saveTeaching(teaching: Teaching, onSuccess: ()->()) {
         // Create a new managed object and insert it into the context, so it can be saved
         // into the database
         let newTeachingDB =  NSEntityDescription.entity(forEntityName: "TeachingDB", in:managedContext)
@@ -162,6 +157,7 @@ extension TeachingService {
         statisticDB.lastViewDuration = 0
         statisticDB.views = 0
         updateDatabase()
+        onSuccess()
     }
 
     private func getTeachingsDB() -> [TeachingDB] {
@@ -185,10 +181,7 @@ extension TeachingService {
                 break
             }
         }
-        print("Actualizando teaching")
-        print(statistic as Any)
-
-
+        
         statistic?.views =  (statistic?.views)! + 1
         statistic?.lastViewDuration = viewedTime
         updateDatabase()
@@ -225,3 +218,30 @@ extension TeachingService {
         }
     }
 }
+// Files methods
+//extension TeachingService: URLSessionDataDelegate {
+//    func storeVideo(teaching: Teaching, onSuccess: @escaping ()->(), onSaved: @escaping ((Teaching, ()->()) ->()), onError: @escaping ((String) ->())) {
+//        
+//        var actualTeaching = teaching
+//        guard let url = URL(string: actualTeaching.media) else { return }
+//        
+//        print("Descargando video")
+//
+//        let task = URLSession.shared.downloadTask(with: url) { localURL, urlResponse, downloadError in
+//            if let error = downloadError {
+//                print(error)
+//                onError("Error downloading the video. Please try again later")
+//            } else {
+//                if let localURL = localURL {
+//                    print("Descargando video")
+//                    if let newLocation = try? String(contentsOf: localURL) {
+//                        actualTeaching.media = newLocation
+//                        onSaved(actualTeaching, onSuccess)
+//                    }
+//                }
+//            }
+//        }
+//        
+//        task.resume()
+//    }
+//}
