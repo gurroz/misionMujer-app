@@ -17,9 +17,9 @@ struct Category {
         guard let id = json["id"] as? Int16,
             let title = json["name"] as? String,
             let imageName = json["image"] as? String
-            else {
-                return nil
-            }
+        else {
+            return nil
+        }
         
         self.id = id
         self.title = title

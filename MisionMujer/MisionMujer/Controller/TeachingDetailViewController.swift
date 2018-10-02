@@ -26,6 +26,7 @@ class TeachingDetailViewController: UIViewController {
     @IBAction func playButton(_ sender: UIButton) {
        playVideo()
     }
+    
     @IBOutlet weak var downloadProgress: UIView!
     
     var teaching:Teaching = Teaching()
@@ -83,19 +84,17 @@ class TeachingDetailViewController: UIViewController {
     
     func persistTeaching() {
         if !isTeachingPersisted {
-            loveItImageBtn.isHidden = true
             TeachingService.sharedInstance.persistTeaching(teaching: teaching, onSuccess: successPersisting, onError: errorPersisting)
         }
     }
     
     func successPersisting() {
         isTeachingPersisted = true
-        loveItImageBtn.isHidden = false
         updateLoveItImageStatus()
     }
     
     func errorPersisting(_ msg: String) {
-        loveItImageBtn.isHidden = false
+        downloadProgress.isHidden = false
         let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

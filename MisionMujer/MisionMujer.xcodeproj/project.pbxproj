@@ -136,6 +136,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A54FA612162765B00A01F1B /* Teaching */ = {
+			isa = PBXGroup;
+			children = (
+				9AAA8663215F785500622F73 /* StatisticsDB.swift */,
+				9A71A1432144D86F000C96A0 /* Teaching.swift */,
+				9AAA8661215F785500622F73 /* TeachingDB.swift */,
+				9A38E6E32144E21D005DC846 /* TeachingService.swift */,
+				9AF49A49215FE07400A9A655 /* TeachingHandler.swift */,
+				9AF49A47215FE03700A9A655 /* TeachingCache.swift */,
+				9AF49A4B2160FF4C00A9A655 /* TeachingAPI.swift */,
+			);
+			path = Teaching;
+			sourceTree = "<group>";
+		};
+		9A54FA622162767300A01F1B /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9AAA8665215F785500622F73 /* CategoriesDB.swift */,
+				9A38E6E721453ED5005DC846 /* Category.swift */,
+				9A38E6E921453FF4005DC846 /* CategoryService.swift */,
+				9AF49A4D2161106D00A9A655 /* CategoryHandler.swift */,
+				9AF49A4F2161112D00A9A655 /* CategoryCache.swift */,
+				9AF49A512161138000A9A655 /* CategoryAPI.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		9A54FA632162769000A01F1B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				9AF49A532161194F00A9A655 /* NewsHandler.swift */,
+				9AD2DA57213C1EC9007B0D62 /* NewsService.swift */,
+				9AF49A5521611AD200A9A655 /* NewsCache.swift */,
+				9AF49A5721611C2300A9A655 /* NewsAPI.swift */,
+				9A884AAD215BCE2900EC169D /* News.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		9AAA865D215F552B00622F73 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,27 +256,12 @@
 		9AD2DA52213BCAD1007B0D62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9A54FA632162769000A01F1B /* News */,
+				9A54FA622162767300A01F1B /* Category */,
+				9A54FA612162765B00A01F1B /* Teaching */,
 				9AAA865E215F672000622F73 /* TeachingData.xcdatamodeld */,
-				9AAA8665215F785500622F73 /* CategoriesDB.swift */,
-				9A38E6E721453ED5005DC846 /* Category.swift */,
-				9A38E6E921453FF4005DC846 /* CategoryService.swift */,
-				9AF49A4D2161106D00A9A655 /* CategoryHandler.swift */,
-				9AF49A4F2161112D00A9A655 /* CategoryCache.swift */,
-				9AF49A512161138000A9A655 /* CategoryAPI.swift */,
 				9A884AAB215BC15C00EC169D /* Configurations.swift */,
-				9AD2DA57213C1EC9007B0D62 /* NewsService.swift */,
-				9AF49A5521611AD200A9A655 /* NewsCache.swift */,
-				9AF49A5721611C2300A9A655 /* NewsAPI.swift */,
-				9A884AAD215BCE2900EC169D /* News.swift */,
-				9AF49A532161194F00A9A655 /* NewsHandler.swift */,
 				9A54FA5F21621DEB00A01F1B /* MediaDownloadService.swift */,
-				9AAA8663215F785500622F73 /* StatisticsDB.swift */,
-				9A71A1432144D86F000C96A0 /* Teaching.swift */,
-				9AAA8661215F785500622F73 /* TeachingDB.swift */,
-				9A38E6E32144E21D005DC846 /* TeachingService.swift */,
-				9AF49A49215FE07400A9A655 /* TeachingHandler.swift */,
-				9AF49A47215FE03700A9A655 /* TeachingCache.swift */,
-				9AF49A4B2160FF4C00A9A655 /* TeachingAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

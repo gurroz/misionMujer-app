@@ -78,6 +78,7 @@ class TeachingService {
     }
     
     func persistTeaching(teaching: Teaching, onSuccess: @escaping () -> (), onError: @escaping (String) -> ()) {
+        self.saveTeaching(teaching: teaching, onSuccess: onSuccess)
 //        self.storeVideo(teaching: teaching,onSuccess: onSuccess, onSaved: self.saveTeaching, onError: onError)
     }
     
@@ -141,13 +142,15 @@ extension TeachingService {
         
         updateDatabase()
 
-        for category in teaching.categories {
-            let newCategoryDB =  NSEntityDescription.entity(forEntityName: "CategoriesDB", in:managedContext)
-            let categoryDB = CategoriesDB(entity: newCategoryDB!, insertInto: managedContext)
-            categoryDB.categoryId = category.id
-            categoryDB.title = category.title
-            categoryDB.teaching = teachingDB
-            updateDatabase()
+        if let teachingCategories = teaching.categories {
+            for category in teachingCategories {
+                let newCategoryDB =  NSEntityDescription.entity(forEntityName: "CategoriesDB", in:managedContext)
+                let categoryDB = CategoriesDB(entity: newCategoryDB!, insertInto: managedContext)
+                categoryDB.categoryId = category.id
+                categoryDB.title = category.title
+                categoryDB.teaching = teachingDB
+                updateDatabase()
+            }
         }
         
         let newStatisticDB =  NSEntityDescription.entity(forEntityName: "StatisticsDB", in:managedContext)

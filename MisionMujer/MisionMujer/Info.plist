@@ -26,15 +26,11 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>ec2-54-226-176-255.compute-1.amazonaws.com</key>
+			<key>misionmujer.org</key>
 			<dict>
 				<key>NSAllowsLocalNetworking</key>
 				<true/>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
 				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
 		</dict>
