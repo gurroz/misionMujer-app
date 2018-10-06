@@ -44,4 +44,9 @@ class TeachingCache: TeachingHandler {
         }
     }
     
+    func saveTeachingData(teaching: Teaching) {
+        teachings.updateValue(teaching, forKey: teaching.id)
+    }
+    
+    
 }

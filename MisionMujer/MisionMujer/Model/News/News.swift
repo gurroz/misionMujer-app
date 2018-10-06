@@ -15,7 +15,8 @@ public struct News {
     var content:String
     var date:String
     var imageName:String
-    
+    var image: NSData!
+
     init?() {
         self.id = 0
         self.title = ""
@@ -50,5 +51,9 @@ public struct News {
         
         self.date = finalDate
         self.imageName = imageName
+    }
+    
+    mutating func setImageAsData(_ imgData: NSData) -> Void {
+        self.image = imgData
     }
 }

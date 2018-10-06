@@ -9,41 +9,90 @@
 import Foundation
 import UIKit
 
-final class MediaDownloadService: NSObject {
-    private var session: URLSession!
+class DownloadTeaching {
+    var teaching: Teaching
+    var task: URLSessionDownloadTask?
+    var isDownloading = false
+    var resumeData: Data?
     
+    var progress: Float = 0
+    
+    init(teaching: Teaching) {
+        self.teaching = teaching
+    }
+}
+
+final class MediaDownloadService: NSObject {
+    private lazy var session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    }()
+    
+    var dataTasks: [URL: DownloadTeaching] = [:]
+
     public static let shared = MediaDownloadService()
     
     private override init() {
         super.init()
-        let configuration = URLSessionConfiguration.default
-        session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
     
-//    func download(request: URLRequest) -> DownloadTask {
-//        let task = session.dataTask(with: request)
-//        let downloadTask = GenericDownloadTask(task: task)
-//        downloadTasks.append(downloadTask)
-//        return downloadTask
-//    }
+    func download(teaching: Teaching) {
+        print("Starting download")
+        guard let url = URL(string: teaching.media) else { return }
+        let urlReq = URLRequest(url: url)
+        
+        let downloadTeaching = DownloadTeaching(teaching: teaching)
+        downloadTeaching.task = session.downloadTask(with: urlReq)
+        downloadTeaching.task!.resume()
+        downloadTeaching.isDownloading = true
+        
+        dataTasks[url] = downloadTeaching
+    }
 }
 
-extension MediaDownloadService: URLSessionDataDelegate {
+extension MediaDownloadService: URLSessionDownloadDelegate {
     
-    internal func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        // Calls background session completion in AppDelegate
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-            let completionHandler = appDelegate.backgroundSessionCompletionHandler {
-            appDelegate.backgroundSessionCompletionHandler = nil
-            DispatchQueue.main.async {
-                completionHandler()
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        print("Aca 3")
+
+        DispatchQueue.main.async {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let backgroundCompletionHandler = appDelegate.backgroundSessionCompletionHandler else {
+                    print("Aca 99sd")
+                    return
             }
+            backgroundCompletionHandler()
         }
     }
     
-    internal func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64,totalBytesExpectedToWrite: Int64) {
-        // Gives you the URLSessionDownloadTask that is being executed
-        // along with the total file length - totalBytesExpectedToWrite
-        // and the current amount of data that has received up to this point - totalBytesWritten
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("Aca final")
+        guard let httpResponse = downloadTask.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            print ("server error")
+            return
+        }
+        
+        do {
+            print("Finish download")
+
+            let documentsURL = try
+                FileManager.default.url(for: .documentDirectory,
+                                        in: .userDomainMask,
+                                        appropriateFor: nil,
+                                        create: false)
+            let savedURL = documentsURL.appendingPathComponent(location.lastPathComponent)
+            try FileManager.default.moveItem(at: location, to: savedURL)
+        } catch {
+            print ("file error: \(error)")
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64) {
+        let prctg = (totalBytesWritten / totalBytesExpectedToWrite) * 100
+        print("Conitnue download")
+
+        print("Writenn \(prctg)")
     }
 }

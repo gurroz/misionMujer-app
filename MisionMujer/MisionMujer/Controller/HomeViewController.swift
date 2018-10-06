@@ -65,14 +65,19 @@ class HomeViewController: UIViewController {
         if (teachings?.count)! > 0 {
             self.teachingLast = teachings![0]
 
-            if let url = URL(string: teachingLast.imageName) {
+            if self.teachingLast.image != nil {
+                 self.latestImageView.image =  UIImage(data: self.teachingLast .image! as Data)
+            } else if  let url = URL(string: self.teachingLast .imageName)  {
                 DispatchQueue.global().async {
                     let data = try? Data(contentsOf: url)
+                    self.teachingLast .setImageAsData(data! as NSData)
+                    TeachingService.sharedInstance.saveTeachingChanges(teaching: self.teachingLast )
                     DispatchQueue.main.async {
                         self.latestImageView.image = UIImage(data: data!)
                     }
                 }
             }
+            
             
             latestTitleLabel.text = teachingLast.title
             latestDescriptionLabel.text = teachingLast.description
@@ -92,17 +97,22 @@ extension HomeViewController:  UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryViewCell
         
-        let category = categoryList[indexPath.row]
+        var category = categoryList[indexPath.row]
         cell.nameLabel!.text = category.title
         cell.categoryImageView.image = UIImage(named: category.imageName)
         cell.loadingImage.startAnimating()
         
-        if let url = URL(string: category.imageName) {
+        if category.image != nil {
+            cell.loadingImage.stopAnimating()
+            cell.categoryImageView.image =  UIImage(data: category.image! as Data)
+        } else if let url = URL(string: category.imageName) {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     cell.loadingImage.stopAnimating()
                     cell.categoryImageView!.image  = UIImage(data: data!)
+                    category.setImageAsData(data! as NSData)
+                    self.categoryList[indexPath.row] = category
                 }
             }
         }

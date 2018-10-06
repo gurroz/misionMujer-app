@@ -37,7 +37,7 @@ class CategoryTeachingViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryTeachingCell", for: indexPath) as! TeachingTableViewCell
         
-        let teaching:Teaching = teachingList[indexPath.row]
+        var teaching:Teaching = teachingList[indexPath.row]
         
         cell.titleLabel!.text = teaching.title
         cell.descriptionLabel!.text = teaching.description
@@ -45,12 +45,18 @@ class CategoryTeachingViewController: UITableViewController  {
         cell.durationLabel!.text = teaching.getDurationInMinutes()
         cell.categoryLoadingImage.startAnimating()
         
-        if  let url = URL(string: teaching.imageName)  {
+        if teaching.image != nil {
+            cell.categoryLoadingImage.stopAnimating()
+            cell.teachingImageView!.image =  UIImage(data: teaching.image! as Data)
+        } else if  let url = URL(string: teaching.imageName)  {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     cell.categoryLoadingImage.stopAnimating()
                     cell.teachingImageView!.image  = UIImage(data: data!)
+                    teaching.setImageAsData(data! as NSData)
+                    TeachingService.sharedInstance.saveTeachingChanges(teaching: teaching)
+                    self.teachingList[indexPath.row] = teaching
                 }
             }
         }

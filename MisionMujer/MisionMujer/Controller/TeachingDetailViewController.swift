@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class TeachingDetailViewController: UIViewController {
+class TeachingDetailViewController: UIViewController, URLSessionDataDelegate {
    
     @IBOutlet weak var teachingImageView: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
@@ -35,7 +35,7 @@ class TeachingDetailViewController: UIViewController {
     override func viewDidLoad() {
         isTeachingPersisted = TeachingService.sharedInstance.isTeachingPersisted(teaching: teaching)
         
-        if (isTeachingPersisted  && teaching.image != nil) {
+        if teaching.image != nil {
             self.teachingImageView.image = UIImage(data: teaching.image as Data)
         } else {
             loadingImage.startAnimating()

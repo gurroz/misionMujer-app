@@ -58,4 +58,8 @@ class TeachingAPI: TeachingHandler {
         task.resume()
     }
     
+    // Does not apply
+    func saveTeachingData(teaching: Teaching) {
+    }
+    
 }

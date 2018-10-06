@@ -67,6 +67,10 @@ class TeachingService {
         return teachingDict
     }
     
+    func saveTeachingChanges(teaching: Teaching) {
+        self.teachingHandler.saveTeachingData(teaching: teaching)
+    }
+    
     func isTeachingPersisted(teaching: Teaching) -> Bool {
         let teachingsDB: [TeachingDB] = self.getTeachingsDB()
         for teachingDB in teachingsDB {
@@ -77,8 +81,10 @@ class TeachingService {
         return false
     }
     
-    func persistTeaching(teaching: Teaching, onSuccess: @escaping () -> (), onError: @escaping (String) -> ()) {
-        self.saveTeaching(teaching: teaching, onSuccess: onSuccess)
+    func persistTeaching(teaching: Teaching, onSuccess: @escaping () -> (), onError: @escaping (String) -> (), onUpdate: @escaping (String) -> ()) {
+        print("Descargando video")
+        MediaDownloadService.shared.download(teaching: teaching)
+        //        self.saveTeaching(teaching: teaching, onSuccess: onSuccess)
 //        self.storeVideo(teaching: teaching,onSuccess: onSuccess, onSaved: self.saveTeaching, onError: onError)
     }
     
@@ -221,30 +227,3 @@ extension TeachingService {
         }
     }
 }
-// Files methods
-//extension TeachingService: URLSessionDataDelegate {
-//    func storeVideo(teaching: Teaching, onSuccess: @escaping ()->(), onSaved: @escaping ((Teaching, ()->()) ->()), onError: @escaping ((String) ->())) {
-//        
-//        var actualTeaching = teaching
-//        guard let url = URL(string: actualTeaching.media) else { return }
-//        
-//        print("Descargando video")
-//
-//        let task = URLSession.shared.downloadTask(with: url) { localURL, urlResponse, downloadError in
-//            if let error = downloadError {
-//                print(error)
-//                onError("Error downloading the video. Please try again later")
-//            } else {
-//                if let localURL = localURL {
-//                    print("Descargando video")
-//                    if let newLocation = try? String(contentsOf: localURL) {
-//                        actualTeaching.media = newLocation
-//                        onSaved(actualTeaching, onSuccess)
-//                    }
-//                }
-//            }
-//        }
-//        
-//        task.resume()
-//    }
-//}

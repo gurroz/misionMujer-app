@@ -53,19 +53,24 @@ class NewsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsViewCell
         
-        let news:News =  newsList[indexPath.row]
+        var news:News =  newsList[indexPath.row]
         
         cell.dateLabel!.text = news.date
         cell.descriptionLabel!.text = news.description
         cell.titleLabel!.text = news.title
         cell.loaderImage.startAnimating()
         
-        if let url = URL(string: news.imageName) {
+        if news.image != nil {
+            cell.loaderImage.stopAnimating()
+            cell.imageNewsView!.image  = UIImage(data: news.image as Data)
+        } else if let url = URL(string: news.imageName) {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     cell.loaderImage.stopAnimating()
                     cell.imageNewsView!.image  = UIImage(data: data!)
+                    news.setImageAsData(data! as NSData)
+                    self.newsList[indexPath.row] = news
                 }
             }
         }

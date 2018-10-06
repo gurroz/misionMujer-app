@@ -55,14 +55,11 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
     
-    func changeDataSource(indexPath: NSIndexPath) -> Teaching
-    {
+    func changeDataSource(indexPath: NSIndexPath) -> Teaching {
         var teaching:Teaching
-        if searchController.isActive && searchController.searchBar.text! != ""
-        {
+        if searchController.isActive && searchController.searchBar.text! != "" {
             teaching = filteredTeaching[indexPath.row]
-        }
-        else{
+        } else {
             teaching = teachingList[indexPath.row]
         }
         
@@ -72,7 +69,7 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchTeachingCell", for: indexPath) as! TeachingTableViewCell
         
-        let teaching:Teaching = changeDataSource(indexPath: indexPath as NSIndexPath)
+        var teaching:Teaching = changeDataSource(indexPath: indexPath as NSIndexPath)
         
         cell.titleLabel!.text = teaching.title
         cell.descriptionLabel!.text = teaching.description
@@ -80,12 +77,18 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         cell.durationLabel!.text = teaching.getDurationInMinutes()
         cell.loadingImage.startAnimating()
         
-        if  let url = URL(string: teaching.imageName)  {
+        if teaching.image != nil {
+            cell.loadingImage.stopAnimating()
+            cell.teachingImageView!.image =  UIImage(data: teaching.image! as Data)
+        } else if  let url = URL(string: teaching.imageName)  {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     cell.loadingImage.stopAnimating()
                     cell.teachingImageView!.image  = UIImage(data: data!)
+                    teaching.setImageAsData(data! as NSData)
+                    TeachingService.sharedInstance.saveTeachingChanges(teaching: teaching)
+                    self.teachingList[indexPath.row] = teaching
                 }
             }
         }

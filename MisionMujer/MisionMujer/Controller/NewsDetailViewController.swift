@@ -35,7 +35,9 @@ class NewsDetailViewController: UIViewController {
         titleLabel!.text = news!.title
         dateLabel!.text = "Published: \(news!.date)"
 
-        if let url = URL(string: news!.imageName) {
+        if news?.image != nil {
+            self.newsImageView!.image  = UIImage(data: news?.image as! Data)
+        } else if let url = URL(string: news!.imageName) {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {

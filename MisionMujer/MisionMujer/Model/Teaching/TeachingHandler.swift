@@ -11,4 +11,5 @@ protocol TeachingHandler {
     init(nextHandler: TeachingHandler?)
     func getTeaching(_ id: Int64, onCompleted: ((Teaching?) -> ())?)
     func getAllTeachings(onCompleted: (([Teaching]?) -> ())?)
+    func saveTeachingData(teaching: Teaching)
 }
