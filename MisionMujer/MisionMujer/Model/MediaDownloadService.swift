@@ -14,11 +14,16 @@ class DownloadTeaching {
     var task: URLSessionDownloadTask?
     var isDownloading = false
     var resumeData: Data?
-    
+    var onSuccess: (Teaching) -> ()
+    var onError: (String) -> ()
+    var onUpdate: (Float) -> ()
     var progress: Float = 0
     
-    init(teaching: Teaching) {
+    init(teaching: Teaching, onSuccess: @escaping (Teaching) -> (), onError: @escaping (String) -> (), onUpdate: @escaping (Float) -> ()) {
         self.teaching = teaching
+        self.onError = onError
+        self.onUpdate = onUpdate
+        self.onSuccess = onSuccess
     }
 }
 
@@ -36,12 +41,12 @@ final class MediaDownloadService: NSObject {
         super.init()
     }
     
-    func download(teaching: Teaching) {
+    func download(teaching: Teaching, onSuccess: @escaping (Teaching) -> (), onError: @escaping (String) -> (), onUpdate: @escaping (Float) -> ()) {
         print("Starting download")
         guard let url = URL(string: teaching.media) else { return }
         let urlReq = URLRequest(url: url)
         
-        let downloadTeaching = DownloadTeaching(teaching: teaching)
+        let downloadTeaching = DownloadTeaching(teaching: teaching, onSuccess: onSuccess, onError: onError, onUpdate: onUpdate)
         downloadTeaching.task = session.downloadTask(with: urlReq)
         downloadTeaching.task!.resume()
         downloadTeaching.isDownloading = true
@@ -51,14 +56,11 @@ final class MediaDownloadService: NSObject {
 }
 
 extension MediaDownloadService: URLSessionDownloadDelegate {
-    
+    // This is for background call. TODO: TEST it
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        print("Aca 3")
-
         DispatchQueue.main.async {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                 let backgroundCompletionHandler = appDelegate.backgroundSessionCompletionHandler else {
-                    print("Aca 99sd")
                     return
             }
             backgroundCompletionHandler()
@@ -66,33 +68,42 @@ extension MediaDownloadService: URLSessionDownloadDelegate {
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("Aca final")
         guard let httpResponse = downloadTask.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
             print ("server error")
             return
         }
         
+        guard let sourceURL = downloadTask.originalRequest?.url else { return }
+        let downloadSource = self.dataTasks[sourceURL]
+        
         do {
-            print("Finish download")
-
-            let documentsURL = try
-                FileManager.default.url(for: .documentDirectory,
-                                        in: .userDomainMask,
-                                        appropriateFor: nil,
-                                        create: false)
-            let savedURL = documentsURL.appendingPathComponent(location.lastPathComponent)
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let savedURL = documentsURL.appendingPathComponent(sourceURL.lastPathComponent)
             try FileManager.default.moveItem(at: location, to: savedURL)
+            
+            var teaching = downloadSource?.teaching
+            teaching?.setLocalMedia(savedURL)
+            
+            DispatchQueue.main.async {
+                downloadSource?.onSuccess(teaching!)
+            }
+            
+            self.dataTasks[sourceURL] = nil
+            print("Finished download to \(savedURL)")
         } catch {
+            downloadSource?.onError("Error saving file. Please check sufficient space")
             print ("file error: \(error)")
         }
     }
     
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
-                    didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64) {
-        let prctg = (totalBytesWritten / totalBytesExpectedToWrite) * 100
-        print("Conitnue download")
+        guard let sourceURL = downloadTask.originalRequest?.url else { return }
+        let downloadSource = self.dataTasks[sourceURL]
 
-        print("Writenn \(prctg)")
+        let prctg = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        DispatchQueue.main.async {
+            downloadSource?.onUpdate(prctg)
+        }
     }
 }

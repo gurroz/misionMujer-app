@@ -22,6 +22,7 @@ struct Teaching {
     var media: String
     var views: Int32
     var isPersisted: Bool
+    var localMedia: URL!
     
     init() {
         self.id = 0
@@ -73,18 +74,27 @@ struct Teaching {
         self.notes = data.notes!
         self.duration = data.duration
         self.type = data.type!
-        self.media = data.media!
+        self.media = ""
         self.date = data.date!
         self.isPersisted = true
         self.imageName = ""
         self.image = data.image
         self.views = (data.statistics?.views)!
+        self.localMedia = data.media
 
         self.categories = getCategoriesFromDB(categoriesDB: data.categories!)
     }
     
     mutating func setImageAsData(_ imgData: NSData) -> Void {
         self.image = imgData
+    }
+    
+    mutating func setLocalMedia(_ localPath: URL) -> Void {
+        self.localMedia = localPath
+    }
+    
+    mutating func setPersisted() -> Void {
+        self.isPersisted = true
     }
     
     private func getDateInFormat(dateStr: String) -> String {

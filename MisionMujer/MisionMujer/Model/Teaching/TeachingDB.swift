@@ -24,7 +24,7 @@ extension TeachingDB {
     @NSManaged public var date: String?
     @NSManaged public var duration: Int16
     @NSManaged public var image: NSData?
-    @NSManaged public var media: String?
+    @NSManaged public var media: URL?
     @NSManaged public var notes: String?
     @NSManaged public var tDescription: String?
     @NSManaged public var tId: Int64

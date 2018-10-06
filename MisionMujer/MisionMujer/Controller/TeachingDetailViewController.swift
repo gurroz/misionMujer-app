@@ -27,14 +27,19 @@ class TeachingDetailViewController: UIViewController, URLSessionDataDelegate {
        playVideo()
     }
     
-    @IBOutlet weak var downloadProgress: UIView!
+    @IBOutlet weak var downloadProgressView: UIProgressView!
     
     var teaching:Teaching = Teaching()
     var isTeachingPersisted: Bool = false
     
     override func viewDidLoad() {
-        isTeachingPersisted = TeachingService.sharedInstance.isTeachingPersisted(teaching: teaching)
+        let existingTeaching = TeachingService.sharedInstance.getPersistedTeaching(teaching: teaching)
+        isTeachingPersisted = existingTeaching.isPersisted
         
+        if existingTeaching.id != 0 {
+            teaching = existingTeaching
+        }
+
         if teaching.image != nil {
             self.teachingImageView.image = UIImage(data: teaching.image as Data)
         } else {
@@ -61,40 +66,53 @@ class TeachingDetailViewController: UIViewController, URLSessionDataDelegate {
     }
     
     func playVideo() {
-        guard let url = URL(string: teaching.media) else {
+        var url = URL(string: teaching.media)
+        
+        if isTeachingPersisted {
+            TeachingService.sharedInstance.updateTeachingStatistics(teaching: teaching)
+            statisticsLabel.text = "\(String(teaching.views + 1)) views"
+            if teaching.localMedia != nil {
+                url = teaching.localMedia
+            }
+        } else if url == nil {
             return
         }
         
-        if !isTeachingPersisted {
-            TeachingService.sharedInstance.updateTeachingStatistics(teaching: teaching)
-            statisticsLabel.text = "\(String(teaching.views + 1)) views"
-        }
-        
         // Create an AVPlayer, passing it the HTTP Live Streaming URL.
-        let player = AVPlayer(url: url)
+        let player = AVPlayer(url: url!)
         
         // Create a new AVPlayerViewController and pass it a reference to the player.
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         
-        self.present(playerViewController, animated: true) {
-            playerViewController.player!.play()
-        }
+        self.present(playerViewController, animated: true, completion: nil)
+        player.play()
     }
     
     func persistTeaching() {
         if !isTeachingPersisted {
-            TeachingService.sharedInstance.persistTeaching(teaching: teaching, onSuccess: successPersisting, onError: errorPersisting)
+            downloadProgressView.isHidden = false
+            TeachingService.sharedInstance.downloadTeaching(teaching: teaching, onSuccess: succesDownloading, onError: errorPersisting, onUpdate: updateDownloadProgress)
         }
     }
     
-    func successPersisting() {
+    func succesDownloading(teaching: Teaching) {
+        TeachingService.sharedInstance.persistTeaching(teaching: teaching, onSuccess: successPersisting)
+    }
+    
+    func successPersisting(_ teaching: Teaching) {
         isTeachingPersisted = true
+        self.teaching = teaching
+        downloadProgressView.isHidden = true
         updateLoveItImageStatus()
     }
     
+    func updateDownloadProgress(_ progress: Float) {
+        downloadProgressView.progress = progress
+    }
+    
     func errorPersisting(_ msg: String) {
-        downloadProgress.isHidden = false
+        downloadProgressView.isHidden = false
         let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

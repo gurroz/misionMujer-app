@@ -71,21 +71,23 @@ class TeachingService {
         self.teachingHandler.saveTeachingData(teaching: teaching)
     }
     
-    func isTeachingPersisted(teaching: Teaching) -> Bool {
+    
+    func getPersistedTeaching(teaching: Teaching) -> Teaching {
         let teachingsDB: [TeachingDB] = self.getTeachingsDB()
         for teachingDB in teachingsDB {
             if teachingDB.tId == teaching.id {
-                return true
+                return Teaching(data: teachingDB)!
             }
         }
-        return false
+        return Teaching()
     }
     
-    func persistTeaching(teaching: Teaching, onSuccess: @escaping () -> (), onError: @escaping (String) -> (), onUpdate: @escaping (String) -> ()) {
-        print("Descargando video")
-        MediaDownloadService.shared.download(teaching: teaching)
-        //        self.saveTeaching(teaching: teaching, onSuccess: onSuccess)
-//        self.storeVideo(teaching: teaching,onSuccess: onSuccess, onSaved: self.saveTeaching, onError: onError)
+    func downloadTeaching(teaching: Teaching, onSuccess: @escaping (Teaching) -> (), onError: @escaping (String) -> (), onUpdate: @escaping (Float) -> ()) {
+        MediaDownloadService.shared.download(teaching: teaching, onSuccess: onSuccess, onError: onError,  onUpdate: onUpdate)
+    }
+    
+    func persistTeaching(teaching: Teaching, onSuccess: @escaping (Teaching) -> ()) {
+        self.saveTeaching(teaching: teaching, onSuccess: onSuccess)
     }
     
     func deletePersistedTeaching(teaching: Teaching) {
@@ -126,7 +128,7 @@ class TeachingService {
 extension TeachingService {
     // MARK: - CRUD
     
-    private func saveTeaching(teaching: Teaching, onSuccess: ()->()) {
+    private func saveTeaching(teaching: Teaching, onSuccess: (Teaching)->()) {
         // Create a new managed object and insert it into the context, so it can be saved
         // into the database
         let newTeachingDB =  NSEntityDescription.entity(forEntityName: "TeachingDB", in:managedContext)
@@ -136,15 +138,12 @@ extension TeachingService {
         teachingDB.date = teaching.date
         teachingDB.duration = teaching.duration
         teachingDB.image = teaching.image
-        teachingDB.media = teaching.media
+        teachingDB.media = teaching.localMedia
         teachingDB.notes = teaching.notes
         teachingDB.tDescription  = teaching.description
         teachingDB.tId = teaching.id
         teachingDB.title = teaching.title
         teachingDB.type = teaching.type
-        
-        print("Guardando teaching")
-        print(teachingDB)
         
         updateDatabase()
 
@@ -166,7 +165,13 @@ extension TeachingService {
         statisticDB.lastViewDuration = 0
         statisticDB.views = 0
         updateDatabase()
-        onSuccess()
+        
+        print("Teaching saved in DB")
+
+        var newTeaching = teaching
+        
+        newTeaching.setPersisted()
+        onSuccess(newTeaching)
     }
 
     private func getTeachingsDB() -> [TeachingDB] {
@@ -194,6 +199,8 @@ extension TeachingService {
         statistic?.views =  (statistic?.views)! + 1
         statistic?.lastViewDuration = viewedTime
         updateDatabase()
+        
+        print("Statistics updated")
     }
     
     private func getCategoriesDB() -> [CategoriesDB] {
