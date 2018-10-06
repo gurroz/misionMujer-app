@@ -91,7 +91,9 @@ extension MediaDownloadService: URLSessionDownloadDelegate {
             self.dataTasks[sourceURL] = nil
             print("Finished download to \(savedURL)")
         } catch {
-            downloadSource?.onError("Error saving file. Please check sufficient space")
+            DispatchQueue.main.async {
+                downloadSource?.onError("Error saving file. Please check sufficient space")
+            }
             print ("file error: \(error)")
         }
     }

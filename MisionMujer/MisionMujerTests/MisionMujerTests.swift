@@ -21,13 +21,13 @@ class MisionMujerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testTeachings() {
-        testSaveTeaching()
-        testUpdateTeaching()
-        testDeleteTeaching()
+    func testTeachingsCRUD() {
+        saveTeaching()
+        updateTeaching()
+        deleteTeaching()
     }
     
-    func testSaveTeaching() {
+    func saveTeaching() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         var teachingDict = [String: Any]()
@@ -48,13 +48,13 @@ class MisionMujerTests: XCTestCase {
         teaching = Teaching(json: teachingDict  as NSDictionary)
         XCTAssertNotNil(teaching)
         
-        TeachingService.sharedInstance.persistTeaching(teaching: teaching!, onSuccess: { }, onError: { _ in })
+        TeachingService.sharedInstance.persistTeaching(teaching: teaching!, onSuccess: { _ in })
         
         let teachings = TeachingService.sharedInstance.getPersistedTeachingList()
         XCTAssert(teachings.count == 1)
     }
     
-    func testUpdateTeaching() {
+    func updateTeaching() {
         var teachings = TeachingService.sharedInstance.getPersistedTeachingList()
         XCTAssert(teachings.count == 1)
         
@@ -66,7 +66,7 @@ class MisionMujerTests: XCTestCase {
         XCTAssert(teachings[0].views == 1)
     }
     
-    func testDeleteTeaching() {
+    func deleteTeaching() {
         var teachings = TeachingService.sharedInstance.getPersistedTeachingList()
         XCTAssert(teachings.count == 1)
         

@@ -91,11 +91,27 @@ class TeachingService {
     }
     
     func deletePersistedTeaching(teaching: Teaching) {
-        let teachingsDB: [TeachingDB] = self.getTeachingsDB()
-        for teachingDB in teachingsDB {
-            if teachingDB.tId == teaching.id {
-                self.deleteTeachingDB(teachingDB)
+        if deleteTeachingMedia(teaching: teaching) {
+            let teachingsDB: [TeachingDB] = self.getTeachingsDB()
+            for teachingDB in teachingsDB {
+                if teachingDB.tId == teaching.id {
+                    self.deleteTeachingDB(teachingDB)
+                }
             }
+        }
+    }
+    
+    func deleteTeachingMedia(teaching: Teaching) -> Bool {
+        if teaching.localMedia != nil {
+            do {
+                try FileManager.default.removeItem(at: teaching.localMedia)
+                return true
+            } catch let error as NSError {
+                print("Error deleting teaching media: \(error)")
+            }
+            return false
+        } else {
+            return true
         }
     }
     

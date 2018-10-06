@@ -7,7 +7,6 @@
 //
 
 import XCTest
-
 class MisionMujerUITests: XCTestCase {
         
     override func setUp() {
@@ -108,25 +107,6 @@ class MisionMujerUITests: XCTestCase {
         
         let teachingLabelDuration = app/*@START_MENU_TOKEN@*/.staticTexts["teachingDetailLabel"]/*[[".staticTexts[\"10 min\"]",".staticTexts[\"teachingDetailLabel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.label
         XCTAssertEqual(teachingLabelDuration, "81 min")
-    }
-    
-    func testLovedView() {
-        let app = XCUIApplication()
-        sleep(5)
-
-        app.scrollViews.otherElements.buttons["homeLatestDetailBtn"].tap()
-        app.buttons["like"].tap()
-        app.tabBars.buttons["Loved"].tap()
-        
-        let textSleep = app.tables/*@START_MENU_TOKEN@*/.staticTexts["categoryLabelLoved"]/*[[".cells[\"Good Sleep, Get a good sleep\"]",".staticTexts[\"Good Sleep\"]",".staticTexts[\"categoryLabelLoved\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.label
-        XCTAssertEqual(textSleep, "Mindfulness")
-        
-        app.tables/*@START_MENU_TOKEN@*/.buttons["Button"]/*[[".cells[\"Good Sleep, Get a good sleep\"].buttons[\"Button\"]",".buttons[\"Button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
-        app.sheets["Delete this teaching?"].buttons["Delete"].tap()
-        
-        let teachingCont = app.tables/*@START_MENU_TOKEN@*/.staticTexts["categoryLabelLoved"]/*[[".cells[\"Good Sleep, Get a good sleep\"]",".staticTexts[\"Good Sleep\"]",".staticTexts[\"categoryLabelLoved\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
-        XCTAssertFalse(teachingCont.exists)
-        
     }
     
 }

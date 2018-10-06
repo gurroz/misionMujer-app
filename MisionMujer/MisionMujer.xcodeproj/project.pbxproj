@@ -239,10 +239,10 @@
 			isa = PBXGroup;
 			children = (
 				9AF48E142146311E00C2DCEB /* CategoryTeachingViewController.swift */,
-				9A38E6E5214529D1005DC846 /* HomeViewController.swift */,
 				9AD2DA53213C1478007B0D62 /* NewsViewController.swift */,
 				9A260658214A9286006D7D04 /* NewsSplitViewController.swift */,
 				9AF48E1621463E7500C2DCEB /* NewsDetailViewController.swift */,
+				9A38E6E5214529D1005DC846 /* HomeViewController.swift */,
 				9AF48E1021457E2D00C2DCEB /* LovedItViewController.swift */,
 				9AF48E122145EE1000C2DCEB /* LovedItTableViewCell.swift */,
 				9A1CF35C214C08550058E4B5 /* LovedItCategoryCollectionViewCell.swift */,
