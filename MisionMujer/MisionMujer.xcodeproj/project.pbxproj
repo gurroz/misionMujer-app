@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		856036A21E1F253ACDA03849 /* Pods_MisionMujer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF18FB21A879567C3228565 /* Pods_MisionMujer.framework */; };
 		9A1CF35D214C08550058E4B5 /* LovedItCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CF35C214C08550058E4B5 /* LovedItCategoryCollectionViewCell.swift */; };
 		9A260659214A9286006D7D04 /* NewsSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A260658214A9286006D7D04 /* NewsSplitViewController.swift */; };
 		9A38E6E42144E21D005DC846 /* TeachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38E6E32144E21D005DC846 /* TeachingService.swift */; };
@@ -45,6 +46,8 @@
 		9AF49A542161194F00A9A655 /* NewsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF49A532161194F00A9A655 /* NewsHandler.swift */; };
 		9AF49A5621611AD200A9A655 /* NewsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF49A5521611AD200A9A655 /* NewsCache.swift */; };
 		9AF49A5821611C2300A9A655 /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF49A5721611C2300A9A655 /* NewsAPI.swift */; };
+		BC16867B18E07F667366D4B9 /* Pods_MisionMujerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E4C1B91AEB42AF7B782943 /* Pods_MisionMujerUITests.framework */; };
+		F6444DD5841AB640FF1DF344 /* Pods_MisionMujerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56110EE3DA65B9A757351E09 /* Pods_MisionMujerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24E4C1B91AEB42AF7B782943 /* Pods_MisionMujerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MisionMujerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CE6F60E9DC1D79190A9213 /* Pods-MisionMujer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MisionMujer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MisionMujer/Pods-MisionMujer.debug.xcconfig"; sourceTree = "<group>"; };
+		56110EE3DA65B9A757351E09 /* Pods_MisionMujerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MisionMujerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D5F75F4CB4F5B0D1ADF48D7 /* Pods-MisionMujerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MisionMujerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MisionMujerUITests/Pods-MisionMujerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		70285554275F2F274ED387AC /* Pods-MisionMujerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MisionMujerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MisionMujerTests/Pods-MisionMujerTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A1CF35C214C08550058E4B5 /* LovedItCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LovedItCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A260658214A9286006D7D04 /* NewsSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSplitViewController.swift; sourceTree = "<group>"; };
 		9A38E6E32144E21D005DC846 /* TeachingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachingService.swift; sourceTree = "<group>"; };
@@ -109,6 +117,10 @@
 		9AF49A532161194F00A9A655 /* NewsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsHandler.swift; sourceTree = "<group>"; };
 		9AF49A5521611AD200A9A655 /* NewsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCache.swift; sourceTree = "<group>"; };
 		9AF49A5721611C2300A9A655 /* NewsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAPI.swift; sourceTree = "<group>"; };
+		B5C20A49B2B6C20514DEF7B7 /* Pods-MisionMujerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MisionMujerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MisionMujerUITests/Pods-MisionMujerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE5A7515BD7297190CB25FE0 /* Pods-MisionMujer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MisionMujer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MisionMujer/Pods-MisionMujer.release.xcconfig"; sourceTree = "<group>"; };
+		F7C4322B41712DBF7D5D83AF /* Pods-MisionMujerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MisionMujerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MisionMujerTests/Pods-MisionMujerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FFF18FB21A879567C3228565 /* Pods_MisionMujer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MisionMujer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				856036A21E1F253ACDA03849 /* Pods_MisionMujer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6444DD5841AB640FF1DF344 /* Pods_MisionMujerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,12 +144,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC16867B18E07F667366D4B9 /* Pods_MisionMujerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89882B853A9F9C2E914536DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFF18FB21A879567C3228565 /* Pods_MisionMujer.framework */,
+				56110EE3DA65B9A757351E09 /* Pods_MisionMujerTests.framework */,
+				24E4C1B91AEB42AF7B782943 /* Pods_MisionMujerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94C4AD584C7948802D660CDE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27CE6F60E9DC1D79190A9213 /* Pods-MisionMujer.debug.xcconfig */,
+				CE5A7515BD7297190CB25FE0 /* Pods-MisionMujer.release.xcconfig */,
+				F7C4322B41712DBF7D5D83AF /* Pods-MisionMujerTests.debug.xcconfig */,
+				70285554275F2F274ED387AC /* Pods-MisionMujerTests.release.xcconfig */,
+				B5C20A49B2B6C20514DEF7B7 /* Pods-MisionMujerUITests.debug.xcconfig */,
+				6D5F75F4CB4F5B0D1ADF48D7 /* Pods-MisionMujerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9A54FA612162765B00A01F1B /* Teaching */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +229,8 @@
 				9AD2DA37213B9AA1007B0D62 /* MisionMujerTests */,
 				9AD2DA42213B9AA1007B0D62 /* MisionMujerUITests */,
 				9AD2DA1F213B9AA0007B0D62 /* Products */,
+				94C4AD584C7948802D660CDE /* Pods */,
+				89882B853A9F9C2E914536DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,9 +313,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AD2DA48213B9AA1007B0D62 /* Build configuration list for PBXNativeTarget "MisionMujer" */;
 			buildPhases = (
+				A7E3D562C5F33A8903151732 /* [CP] Check Pods Manifest.lock */,
 				9AD2DA1A213B9AA0007B0D62 /* Sources */,
 				9AD2DA1B213B9AA0007B0D62 /* Frameworks */,
 				9AD2DA1C213B9AA0007B0D62 /* Resources */,
+				CF894D9BBA28EF26796AF59B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,6 +332,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AD2DA4B213B9AA1007B0D62 /* Build configuration list for PBXNativeTarget "MisionMujerTests" */;
 			buildPhases = (
+				F35BE190DF3AA7F186732FCF /* [CP] Check Pods Manifest.lock */,
 				9AD2DA30213B9AA1007B0D62 /* Sources */,
 				9AD2DA31213B9AA1007B0D62 /* Frameworks */,
 				9AD2DA32213B9AA1007B0D62 /* Resources */,
@@ -308,6 +351,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AD2DA4E213B9AA1007B0D62 /* Build configuration list for PBXNativeTarget "MisionMujerUITests" */;
 			buildPhases = (
+				25490E2C2DF2A2A9CB8446D1 /* [CP] Check Pods Manifest.lock */,
 				9AD2DA3B213B9AA1007B0D62 /* Sources */,
 				9AD2DA3C213B9AA1007B0D62 /* Frameworks */,
 				9AD2DA3D213B9AA1007B0D62 /* Resources */,
@@ -396,6 +440,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25490E2C2DF2A2A9CB8446D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MisionMujerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7E3D562C5F33A8903151732 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MisionMujer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF894D9BBA28EF26796AF59B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MisionMujer/Pods-MisionMujer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MisionMujer/Pods-MisionMujer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F35BE190DF3AA7F186732FCF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MisionMujerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9AD2DA1A213B9AA0007B0D62 /* Sources */ = {
@@ -605,6 +742,7 @@
 		};
 		9AD2DA49213B9AA1007B0D62 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27CE6F60E9DC1D79190A9213 /* Pods-MisionMujer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -623,6 +761,7 @@
 		};
 		9AD2DA4A213B9AA1007B0D62 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE5A7515BD7297190CB25FE0 /* Pods-MisionMujer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -641,6 +780,7 @@
 		};
 		9AD2DA4C213B9AA1007B0D62 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7C4322B41712DBF7D5D83AF /* Pods-MisionMujerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -662,6 +802,7 @@
 		};
 		9AD2DA4D213B9AA1007B0D62 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70285554275F2F274ED387AC /* Pods-MisionMujerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -683,6 +824,7 @@
 		};
 		9AD2DA4F213B9AA1007B0D62 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5C20A49B2B6C20514DEF7B7 /* Pods-MisionMujerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -703,6 +845,7 @@
 		};
 		9AD2DA50213B9AA1007B0D62 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D5F75F4CB4F5B0D1ADF48D7 /* Pods-MisionMujerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

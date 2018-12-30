@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+
 public struct News {
     
     var id:Int64
@@ -26,16 +28,16 @@ public struct News {
         self.imageName = ""
     }
     
-    init?(json: NSDictionary) {
-        guard let id = json["id"] as? Int64,
-            let title = json["title"] as? String,
-            let description = json["description"] as? String,
-            let content = json["content"] as? String,
-            let date = json["published"] as? String,
-            let imageName = json["image"] as? String
+    init?(json: JSON) {
+        guard let id = json["id"].int64,
+            let title = json["title"].string,
+            let description = json["description"].string,
+            let content = json["content"].string,
+            let date = json["published"].string,
+            let imageName = json["image"].string
             else {
                 return nil
-            }
+        }
         
         self.id = id
         self.title = title
@@ -52,6 +54,7 @@ public struct News {
         self.date = finalDate
         self.imageName = imageName
     }
+    
     
     mutating func setImageAsData(_ imgData: NSData) -> Void {
         self.image = imgData

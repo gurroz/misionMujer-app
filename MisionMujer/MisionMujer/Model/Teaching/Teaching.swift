@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+
 struct Teaching {
     
     var id:Int64
@@ -38,21 +40,21 @@ struct Teaching {
         self.views = 0
     }
     
-    init?(json: NSDictionary) {
-        guard let id = json["id"] as? Int64,
-            let title = json["title"] as? String,
-            let description = json["description"] as? String,
-            let notes = json["content"] as? String,
-            let date = json["published"] as? String,
-            let type = json["type"] as? String,
-            let categories = json["categories"] as? NSArray,
-            let duration = json["length"] as? Int16,
-            let imageName = json["cover"] as? String,
-            let media = json["file"] as? String
+    init?(json: JSON) {
+        guard let id = json["id"].int64,
+            let title = json["title"].string,
+            let description = json["description"].string,
+            let notes = json["content"].string,
+            let date = json["published"].string,
+            let type = json["type"].string,
+            let categories = json["categories"].array,
+            let duration = json["length"].int16,
+            let imageName = json["cover"].string,
+            let media = json["file"].string
             else {
                 return nil
         }
-        
+
         self.id = id
         self.title = title
         self.description = description
@@ -66,6 +68,8 @@ struct Teaching {
         self.date = getDateInFormat(dateStr: date)
         self.categories = getCategoriesFromJson(jsonCategories: categories)
     }
+    
+
     
     init?(data: TeachingDB) {
         self.id = data.tId
@@ -107,10 +111,10 @@ struct Teaching {
         return finalDate
     }
     
-    private func getCategoriesFromJson(jsonCategories: NSArray) -> [Category] {
+    private func getCategoriesFromJson(jsonCategories: [JSON]) -> [Category] {
         var categories: [Category] = [Category]()
         for jsonCategory in jsonCategories {
-            let category: Category = Category(json: jsonCategory as! NSDictionary)!
+            let category: Category = Category(json: jsonCategory)!
             categories.append(category)
         }
         

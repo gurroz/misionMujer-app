@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
+
 class NewsAPI: NewsHandler {
     let session = URLSession.shared
     let NEWS_URL = Configurations.baseURL + "news/"
@@ -18,40 +21,34 @@ class NewsAPI: NewsHandler {
     }
     
     private func getRemotNews(completion:  @escaping ([News]) -> Void) {
-        let url = URL(string: NEWS_URL)!
-        let request = URLRequest(url: url)
+        var news:[News] = [News]()
+
+        guard let url = URL(string: NEWS_URL) else {
+            completion(news)
+            return
+        }
         
-        // Initialise the task for getting the data
-        let task = session.dataTask(with: request, completionHandler: {data, response, downloadError in
-            if let error = downloadError {
-                print(error)
-            } else {
-                // Parse the data received from the service
-                let parsedResult: Any!
-                do {
-                    parsedResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-                } catch let error as NSError {
-                    print(error)
-                    parsedResult = nil
-                } catch {
-                    fatalError()
-                }
+        Alamofire.request(url, method: .get)
+            .validate()
+            .responseJSON { response in
                 
-                var newsList:[News] = [News]()
-                
-                // Extract an element from the data as an array, if your JSON response returns a dictionary you will need to convert it to an NSDictionary
-                if let newsArray = parsedResult as? NSArray {
-                    for newsJson in newsArray {
-                        let newsDictionary = newsJson as! NSDictionary
-                        
-                        let actualNews = News(json: newsDictionary)
-                        newsList.append(actualNews!)
+                switch response.result {
+                case .success(let value) :
+                    let respJSON = JSON(value)
+                    guard let value = respJSON.array else {
+                        print("Malformed data received from getRemotNews service")
+                        completion(news)
+                        return
                     }
+                    news = value.compactMap { news in return News(json: news) }
+                    completion(news)
+                    return
+                    
+                default :
+                    print("Error while fetching news: " + String(describing: response.result.error))
+                    completion(news)
+                    return
                 }
-                DispatchQueue.main.async(execute: {completion(newsList)})
-            }
-        })
-        // Execute the task
-        task.resume()
+        }
     }
 }

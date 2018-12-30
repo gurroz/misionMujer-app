@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+
 struct Category {
     
     var id: Int16
@@ -14,12 +16,12 @@ struct Category {
     var imageName:String
     var image: NSData!
     
-    init?(json: NSDictionary) {
-        guard let id = json["id"] as? Int16,
-            let title = json["name"] as? String,
-            let imageName = json["image"] as? String
-        else {
-            return nil
+    init?(json: JSON) {
+        guard let id = json["id"].int16,
+            let title = json["name"].string,
+            let imageName = json["image"].string
+            else {
+                return nil
         }
         
         self.id = id
