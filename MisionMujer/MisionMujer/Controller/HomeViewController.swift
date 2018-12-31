@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -15,7 +16,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var latestDescriptionLabel: UILabel!
     @IBOutlet weak var latestDurationLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var loadingImage: UIActivityIndicatorView!
     
     @IBOutlet weak var latestView: UIView! {
         didSet {
@@ -41,13 +41,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        collectionView.backgroundView = activityIndicatorView
-        
-        activityIndicatorView.startAnimating()
-        loadingImage.startAnimating()
-        
+                
         CategoryService.sharedInstance.getCategoryList(completion: updateCategoryList)
         TeachingService.sharedInstance.getTeachingList(completion: updateTeachingLatest)
     }
@@ -56,8 +50,7 @@ class HomeViewController: UIViewController {
         if categories != nil {
             self.categoryList = categories!
         }
-        self.activityIndicatorView.stopAnimating()
-    
+        
         self.collectionView.reloadData()
     }
     
@@ -65,26 +58,19 @@ class HomeViewController: UIViewController {
         if (teachings?.count)! > 0 {
             self.teachingLast = teachings![0]
 
-            if self.teachingLast.image != nil {
-                 self.latestImageView.image =  UIImage(data: self.teachingLast .image! as Data)
-            } else if  let url = URL(string: self.teachingLast .imageName)  {
-                DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: url)
-                    self.teachingLast .setImageAsData(data! as NSData)
-                    TeachingService.sharedInstance.saveTeachingChanges(teaching: self.teachingLast )
-                    DispatchQueue.main.async {
-                        self.latestImageView.image = UIImage(data: data!)
-                    }
-                }
-            }
-            
+            self.latestImageView.sd_setShowActivityIndicatorView(true)
+            self.latestImageView.sd_setIndicatorStyle(.gray)
+            self.latestImageView.sd_setImage(with: URL(string: self.teachingLast.imageName), placeholderImage: UIImage(named: "dummy.png"),
+                                               completed: { image, error, cacheType, imageURL in
+                                                self.teachingLast.image = UIImagePNGRepresentation(image!) as NSData?
+                                                TeachingService.sharedInstance.saveTeachingChanges(teaching: self.teachingLast)
+            })
             
             latestTitleLabel.text = teachingLast.title
             latestDescriptionLabel.text = teachingLast.description
             latestDurationLabel.text = teachingLast.getDurationInMinutes()
 
         }
-        self.loadingImage.stopAnimating()
     }
 }
 
@@ -97,25 +83,12 @@ extension HomeViewController:  UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryViewCell
         
-        var category = categoryList[indexPath.row]
+        let category = categoryList[indexPath.row]
         cell.nameLabel!.text = category.title
-        cell.categoryImageView.image = UIImage(named: category.imageName)
-        cell.loadingImage.startAnimating()
         
-        if category.image != nil {
-            cell.loadingImage.stopAnimating()
-            cell.categoryImageView.image =  UIImage(data: category.image! as Data)
-        } else if let url = URL(string: category.imageName) {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    cell.loadingImage.stopAnimating()
-                    cell.categoryImageView!.image  = UIImage(data: data!)
-                    category.setImageAsData(data! as NSData)
-                    self.categoryList[indexPath.row] = category
-                }
-            }
-        }
+        cell.categoryImageView.sd_setShowActivityIndicatorView(true)
+        cell.categoryImageView.sd_setIndicatorStyle(.gray)
+        cell.categoryImageView.sd_setImage(with: URL(string: category.imageName), placeholderImage: UIImage(named: "dummy.png"))
         
         return cell
     }

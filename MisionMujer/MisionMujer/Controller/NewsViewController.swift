@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NewsViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageNewsView: UIImageView!
-    @IBOutlet weak var loaderImage: UIActivityIndicatorView!
     @IBOutlet weak var backgroundCardView: UIView! {
         didSet {
             backgroundCardView.layer.cornerRadius = 3.0
@@ -35,9 +35,7 @@ class NewsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         tableView.backgroundView = activityIndicatorView
-        activityIndicatorView.startAnimating()
         
         NewsService.sharedInstance.getNewsList(completion: getNews)
     }
@@ -53,27 +51,15 @@ class NewsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsViewCell
         
-        var news:News =  newsList[indexPath.row]
+        let news:News =  newsList[indexPath.row]
         
         cell.dateLabel!.text = news.date
         cell.descriptionLabel!.text = news.description
         cell.titleLabel!.text = news.title
-        cell.loaderImage.startAnimating()
         
-        if news.image != nil {
-            cell.loaderImage.stopAnimating()
-            cell.imageNewsView!.image  = UIImage(data: news.image as Data)
-        } else if let url = URL(string: news.imageName) {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    cell.loaderImage.stopAnimating()
-                    cell.imageNewsView!.image  = UIImage(data: data!)
-                    news.setImageAsData(data! as NSData)
-                    self.newsList[indexPath.row] = news
-                }
-            }
-        }
+        cell.imageNewsView.sd_setShowActivityIndicatorView(true)
+        cell.imageNewsView.sd_setIndicatorStyle(.gray)
+        cell.imageNewsView.sd_setImage(with: URL(string: news.imageName), placeholderImage: UIImage(named: "dummy.png"))
         
         return cell
     }
@@ -100,7 +86,6 @@ class NewsViewController: UITableViewController {
         if news != nil {
             self.newsList = news!
         }
-        self.activityIndicatorView.stopAnimating()
 
         self.tableView.reloadData()
     }

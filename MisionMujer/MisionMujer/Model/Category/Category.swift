@@ -14,7 +14,6 @@ struct Category {
     var id: Int16
     var title:String
     var imageName:String
-    var image: NSData!
     
     init?(json: JSON) {
         guard let id = json["id"].int16,
@@ -33,10 +32,6 @@ struct Category {
         self.id =  data.categoryId
         self.title = data.title!
         self.imageName = ""
-    }
-    
-    mutating func setImageAsData(_ imgData: NSData) -> Void {
-        self.image = imgData
     }
 
 }

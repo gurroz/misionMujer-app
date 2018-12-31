@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CategoryTeachingViewController: UITableViewController  {
 
@@ -18,10 +19,7 @@ class CategoryTeachingViewController: UITableViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = category?.title
-        
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         tableView.backgroundView = activityIndicatorView
-        activityIndicatorView.startAnimating()
         
         TeachingService.sharedInstance.getTeachingList(completion: updateTeachingList)
     }
@@ -37,29 +35,16 @@ class CategoryTeachingViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryTeachingCell", for: indexPath) as! TeachingTableViewCell
         
-        var teaching:Teaching = teachingList[indexPath.row]
+        let teaching:Teaching = teachingList[indexPath.row]
         
         cell.titleLabel!.text = teaching.title
         cell.descriptionLabel!.text = teaching.description
         cell.categoryLabel!.text = teaching.getCategoriesAsString()
         cell.durationLabel!.text = teaching.getDurationInMinutes()
-        cell.categoryLoadingImage.startAnimating()
         
-        if teaching.image != nil {
-            cell.categoryLoadingImage.stopAnimating()
-            cell.teachingImageView!.image =  UIImage(data: teaching.image! as Data)
-        } else if  let url = URL(string: teaching.imageName)  {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    cell.categoryLoadingImage.stopAnimating()
-                    cell.teachingImageView!.image  = UIImage(data: data!)
-                    teaching.setImageAsData(data! as NSData)
-                    TeachingService.sharedInstance.saveTeachingChanges(teaching: teaching)
-                    self.teachingList[indexPath.row] = teaching
-                }
-            }
-        }
+        cell.teachingImageView.sd_setShowActivityIndicatorView(true)
+        cell.teachingImageView.sd_setIndicatorStyle(.gray)
+        cell.teachingImageView.sd_setImage(with: URL(string: teaching.imageName), placeholderImage: UIImage(named: "dummy.png"))
         
         return cell
     }
@@ -80,7 +65,6 @@ class CategoryTeachingViewController: UITableViewController  {
             return false
         })}
         
-        self.activityIndicatorView.stopAnimating()
         self.tableView.reloadData()
     }
 }

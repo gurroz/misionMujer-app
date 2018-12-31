@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NewsDetailViewController: UIViewController {
 
@@ -35,17 +36,9 @@ class NewsDetailViewController: UIViewController {
         titleLabel!.text = news!.title
         dateLabel!.text = "Published: \(news!.date)"
 
-        if news?.image != nil {
-            self.newsImageView!.image  = UIImage(data: news?.image as! Data)
-        } else if let url = URL(string: news!.imageName) {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    self.newsImageView!.image  = UIImage(data: data!)
-                }
-            }
-        }
-        
+        self.newsImageView.sd_setShowActivityIndicatorView(true)
+        self.newsImageView.sd_setIndicatorStyle(.gray)
+        self.newsImageView.sd_setImage(with: URL(string: news!.imageName), placeholderImage: UIImage(named: "dummy.png"))
     }
 }
 

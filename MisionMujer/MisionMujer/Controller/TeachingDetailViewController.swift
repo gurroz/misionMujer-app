@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import SDWebImage
 
 class TeachingDetailViewController: UIViewController, URLSessionDataDelegate {
    
@@ -21,7 +22,6 @@ class TeachingDetailViewController: UIViewController, URLSessionDataDelegate {
         persistTeaching()
     }
     
-    @IBOutlet weak var loadingImage: UIActivityIndicatorView!
     @IBOutlet weak var loveItImageBtn: UIButton!
     @IBAction func playButton(_ sender: UIButton) {
        playVideo()
@@ -40,20 +40,13 @@ class TeachingDetailViewController: UIViewController, URLSessionDataDelegate {
             teaching = existingTeaching
         }
 
+       
         if teaching.image != nil {
             self.teachingImageView.image = UIImage(data: teaching.image as Data)
         } else {
-            loadingImage.startAnimating()
-            if let url = URL(string: teaching.imageName) {
-                DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: url)
-                    self.teaching.setImageAsData(data! as NSData)
-                    DispatchQueue.main.async {
-                        self.teachingImageView.image = UIImage(data: data!)
-                        self.loadingImage.stopAnimating()
-                    }
-                }
-            }
+            self.teachingImageView.sd_setShowActivityIndicatorView(true)
+            self.teachingImageView.sd_setIndicatorStyle(.gray)
+            self.teachingImageView.sd_setImage(with: URL(string: teaching.imageName), placeholderImage: UIImage(named: "dummy.png"))
         }
         
         title = teaching.title

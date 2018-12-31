@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SearchViewController: UITableViewController, UISearchResultsUpdating  {
 
@@ -14,8 +15,7 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
     var filteredTeaching = [Teaching]()
 
     let searchController = UISearchController(searchResultsController:nil)
-    var activityIndicatorView: UIActivityIndicatorView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,16 +23,11 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        tableView.backgroundView = activityIndicatorView
-        activityIndicatorView.startAnimating()
-        
         TeachingService.sharedInstance.getTeachingList(completion: updateTeachingList)
     }
     
     func filterContentForSearchText(searchText: String, scope:String = "All") {
-        filteredTeaching = teachingList.filter
-        {
+        filteredTeaching = teachingList.filter {
             teaching in return teaching.title.lowercased().contains(searchText.lowercased())
         }
         tableView.reloadData()
@@ -43,8 +38,7 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text! != ""
-        {
+        if searchController.isActive && searchController.searchBar.text! != "" {
             return filteredTeaching.count
         }
         
@@ -75,24 +69,15 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         cell.descriptionLabel!.text = teaching.description
         cell.categoryLabel!.text = teaching.getCategoriesAsString()
         cell.durationLabel!.text = teaching.getDurationInMinutes()
-        cell.loadingImage.startAnimating()
         
-        if teaching.image != nil {
-            cell.loadingImage.stopAnimating()
-            cell.teachingImageView!.image =  UIImage(data: teaching.image! as Data)
-        } else if  let url = URL(string: teaching.imageName)  {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    cell.loadingImage.stopAnimating()
-                    cell.teachingImageView!.image  = UIImage(data: data!)
-                    teaching.setImageAsData(data! as NSData)
-                    TeachingService.sharedInstance.saveTeachingChanges(teaching: teaching)
-                    self.teachingList[indexPath.row] = teaching
-                }
-            }
-        }
-
+        cell.teachingImageView.sd_setShowActivityIndicatorView(true)
+        cell.teachingImageView.sd_setIndicatorStyle(.gray)
+        cell.teachingImageView.sd_setImage(with: URL(string: teaching.imageName), placeholderImage: UIImage(named: "dummy.png"),
+                                           completed: { image, error, cacheType, imageURL in
+                                            teaching.image = UIImagePNGRepresentation(image!) as NSData?
+                                            TeachingService.sharedInstance.saveTeachingChanges(teaching: teaching)
+        })
+        
         return cell
     }
     
@@ -108,7 +93,6 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
     
     func updateTeachingList(teachings: [Teaching]?) {
         self.teachingList = teachings!
-        self.activityIndicatorView.stopAnimating()
         self.tableView.reloadData()
     }
     
