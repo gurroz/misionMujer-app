@@ -378,6 +378,7 @@
 				TargetAttributes = {
 					9AD2DA1D213B9AA0007B0D62 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -386,10 +387,12 @@
 					};
 					9AD2DA33213B9AA1007B0D62 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = 9AD2DA1D213B9AA0007B0D62;
 					};
 					9AD2DA3E213B9AA1007B0D62 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = 9AD2DA1D213B9AA0007B0D62;
 					};
 				};
@@ -756,7 +759,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gurroz.rmit.com.au.MisionMujer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -775,7 +778,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gurroz.rmit.com.au.MisionMujer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -796,7 +799,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gurroz.rmit.com.au.MisionMujerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MisionMujer.app/MisionMujer";
 			};
@@ -818,7 +821,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gurroz.rmit.com.au.MisionMujerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MisionMujer.app/MisionMujer";
 			};
@@ -839,7 +842,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gurroz.rmit.com.au.MisionMujerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MisionMujer;
 			};
@@ -860,7 +863,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gurroz.rmit.com.au.MisionMujerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MisionMujer;
 			};

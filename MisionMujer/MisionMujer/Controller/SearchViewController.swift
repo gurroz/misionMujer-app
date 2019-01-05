@@ -74,7 +74,7 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating  {
         cell.teachingImageView.sd_setIndicatorStyle(.gray)
         cell.teachingImageView.sd_setImage(with: URL(string: teaching.imageName), placeholderImage: UIImage(named: "dummy.png"),
                                            completed: { image, error, cacheType, imageURL in
-                                            teaching.image = UIImagePNGRepresentation(image!) as NSData?
+                                            teaching.image = image!.pngData() as NSData?
                                             TeachingService.sharedInstance.saveTeachingChanges(teaching: teaching)
         })
         

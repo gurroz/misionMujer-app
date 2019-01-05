@@ -106,8 +106,8 @@ class TeachingDetailViewController: UIViewController, URLSessionDataDelegate {
     
     func errorPersisting(_ msg: String) {
         downloadProgressView.isHidden = false
-        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     

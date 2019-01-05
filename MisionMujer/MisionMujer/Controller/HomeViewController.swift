@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
             self.latestImageView.sd_setIndicatorStyle(.gray)
             self.latestImageView.sd_setImage(with: URL(string: self.teachingLast.imageName), placeholderImage: UIImage(named: "dummy.png"),
                                                completed: { image, error, cacheType, imageURL in
-                                                self.teachingLast.image = UIImagePNGRepresentation(image!) as NSData?
+                                                self.teachingLast.image = image!.pngData() as NSData?
                                                 TeachingService.sharedInstance.saveTeachingChanges(teaching: self.teachingLast)
             })
             
