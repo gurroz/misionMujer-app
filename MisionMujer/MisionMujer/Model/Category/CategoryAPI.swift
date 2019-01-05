@@ -35,7 +35,7 @@ class CategoryAPI: CategoryHandler {
                 switch response.result {
                 case .success(let value) :
                     let respJSON = JSON(value)
-                    guard let value = respJSON.array else {
+                    guard let value = respJSON["data"].array else {
                         print("Malformed data received from getRemoteCategories service")
                         completion(categories)
                         return

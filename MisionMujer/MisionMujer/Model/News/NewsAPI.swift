@@ -35,12 +35,12 @@ class NewsAPI: NewsHandler {
                 switch response.result {
                 case .success(let value) :
                     let respJSON = JSON(value)
-                    guard let value = respJSON.array else {
+                    guard let newsJson = respJSON["data"].array else {
                         print("Malformed data received from getRemotNews service")
                         completion(news)
                         return
                     }
-                    news = value.compactMap { news in return News(json: news) }
+                    news = newsJson.compactMap { news in return News(json: news) }
                     completion(news)
                     return
                     

@@ -39,12 +39,12 @@ class TeachingAPI: TeachingHandler {
                 switch response.result {
                 case .success(let value) :
                     let respJSON = JSON(value)
-                    guard let value = respJSON.array else {
+                    guard let teachingsJson = respJSON["data"].array else {
                         print("Malformed data received from getRemoteTeachings service")
                         completion(teachings)
                         return
                     }
-                    teachings = value.compactMap { teaching in return Teaching(json: teaching) }
+                    teachings = teachingsJson.compactMap { teaching in return Teaching(json: teaching) }
                     completion(teachings)
                     return
                     
